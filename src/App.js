@@ -1,7 +1,7 @@
 import './App.css';
 import AboutMe from './Intro/AboutMe.tsx';
 import CvOverview from './Cv/CvOverview.tsx';
-import CvTimeline from './Cv/CvTimeline.tsx';
+import CvTimeline from './Cv/CvTimeline';
 import ContactMe from './ContactMe/ContactMe.tsx';
 
 
