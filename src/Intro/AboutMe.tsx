@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ImageCarousel from '../shared/ImageCarousel';
 import { hoursWorked } from '../shared/variables';
-import ButtonLabel from '../shared/ButtonLabel';
+import ButtonLabel from '../shared/Labels/ButtonLabel';
 
 class AboutMe extends Component {
     render(): React.ReactNode {
@@ -26,8 +26,7 @@ class AboutMe extends Component {
                             <div className='col-lg-6 d-flex justify-content-center align-items-center'>
                                 <ImageCarousel
                                     imageArray={jobApplicationPhotos}
-                                    roundedImg={true}
-                                    id="introCarousel"
+                                    id={"aboutMeCarousel"}
                                 />
                             </div>
                             {/* right side (intro text) */}
