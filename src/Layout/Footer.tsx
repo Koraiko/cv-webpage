@@ -75,18 +75,20 @@ const Footer = (): JSX.Element => {
         const start = window.pageYOffset;
         const target = element.offsetTop - 100;
         const distance = target - start;
-        const duration = 800;
         
-        let startTime: number | null = null;
+        let progress = 0;
         
-        const animate = (currentTime: number) => {
-            if (!startTime) startTime = currentTime;
-            const progress = Math.min((currentTime - startTime) / duration, 1);
+        const animate = () => {
+            progress += 0.02; // Fixed step size
+            
+            if (progress >= 1) {
+                window.scrollTo(0, target);
+                return;
+            }
             
             const ease = progress * (2 - progress);
             window.scrollTo(0, start + distance * ease);
-            
-            if (progress < 1) requestAnimationFrame(animate);
+            requestAnimationFrame(animate);
         };
         
         requestAnimationFrame(animate);
