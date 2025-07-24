@@ -89,8 +89,8 @@ const CvTimeline = (): JSX.Element => {
                 <>
 
                     <ul>
-                        <li>2014 -- 2017: Supervised weekly "Computer Leisure Time" sessions for students</li>
-                        <li>2017 -- 2018: Designed the yearbook and graduation booklet</li>
+                        <li>Supervised weekly "Computer Leisure Time" (2014–2017)</li>
+                        <li>Designed yearbooks and one graduation booklet (2017–2018)</li>
                     </ul>
                 </>,
             date: "2014 -- 2018",
@@ -100,7 +100,7 @@ const CvTimeline = (): JSX.Element => {
             title: 'Abitur',
             location: 'Ulm, Germany',
             content:
-                <>General university entrance qualification with a basic computer science subject.</>,
+                <>General university entrance qualification with basic computer science.</>,
             date: "09.2010 -- 07.2018",
             ...getIcon('Education'),
         },
@@ -110,9 +110,9 @@ const CvTimeline = (): JSX.Element => {
             content:
                 <>
                     <ul>
-                        <li>Member of the student council for the computer science department</li>
+                        <li>Member of the computer science student council</li>
                         <li>Organized and supported university events</li>
-                        <li>Held roles such as protocol secretary and office access coordinator</li>
+                        <li>Held roles such as protocol secretary and office access manager</li>
                     </ul>
                 </>,
             date: "10.2021 -- 06.2025",
@@ -123,8 +123,10 @@ const CvTimeline = (): JSX.Element => {
             location: 'Ulm, Germany',
             content:
                 <>
-                    Completed studies with a focus on web engineering, IT security and software development. <br />
-                    The bachelor thesis focused on implementing coordination processes in a web-based BPM tool using Angular, TypeScript, and ArangoDB.
+                    <ul>
+                        <li>Specialized subjects: Web Engineering and IT-Security</li>
+                        <li>Thesis on implementing coordination processes in a web-based, object-centric BPM tool (research project: PHILharmonicFlows)</li>
+                    </ul>
                 </>,
             date: "10.2018 -- 06.2025",
             ...getIcon('Education'),
@@ -134,11 +136,10 @@ const CvTimeline = (): JSX.Element => {
             location: 'Ulm, Germany',
             content:
                 <>
-                    <p>
-                        Working on a medical web application by refactoring and restructuring legacy code,
-                        migrating to TanStack Table, upgrading from Bootstrap 4 to 5, and eliminating custom CSS.
-                        Collaborating in an interdisciplinary team using Scrum and Kanban workflows.
-                    </p>
+                    <ul>
+                        <li>Refactored frontend, upgraded design system, and introduced TanStack Table</li>
+                        <li>Member of an agile interdisciplinary team</li>
+                    </ul>
                 </>,
             date: "10.2024 -- 06.2025",
             ...getIcon('Work'),
