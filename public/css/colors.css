@@ -53,3 +53,10 @@
 .fc-old-lace {
 	color: #F8F0DE !important;
 }
+/* white */
+.bg-white {
+	background-color: #FFFFFF !important;
+}
+.fc-white {
+	color: #FFFFFF !important;
+}
