@@ -1,0 +1,19 @@
+.shadows-into-light-two-regular {
+  font-family: "Shadows Into Light Two";
+  font-weight: 400;
+  font-style: normal;
+}
+.righteous-regular {
+  font-family: "Righteous";
+  font-weight: 400;
+  font-style: normal;
+}
+
+.m-s-filled {
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}

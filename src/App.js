@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import AboutMe from './Intro/AboutMe.tsx';
+import CvOverview from './Cv/CvOverview.tsx';
+import CvTimeline from './Cv/CvTimeline.tsx';
+import ContactMe from './ContactMe/ContactMe.tsx';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="alert alert-danger alert-dismissible m-3 text-center" role="alert">
+        <strong>Notice:</strong> This website is currently a work in progress. Please be aware that some npm vulnerabilities may be present and the code is not yet completed.
+        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <AboutMe />
+      <CvOverview />
+      <CvTimeline />
+      <ContactMe />
+    </>
   );
 }
 
