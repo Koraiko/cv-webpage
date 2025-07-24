@@ -216,6 +216,10 @@ const CvTimeline = (): JSX.Element => {
                             </div>
                         }
                         iconStyle={item.iconStyle}
+                        intersectionObserverProps={{
+                            threshold: 0.05,
+                            triggerOnce: false,
+                        }}
                     >
                         <h3 className="vertical-timeline-element-title mb-2">{item.title}</h3>
                         <div>{item.content}</div>
