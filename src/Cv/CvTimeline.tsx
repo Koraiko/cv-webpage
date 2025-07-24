@@ -205,7 +205,9 @@ const CvTimeline = (): JSX.Element => {
 
     return (
         <>
-            <h1>Timeline</h1>
+            <div className='w-100 d-flex justify-content-center align-items-center mb-n1 mt-4'>
+              <span className="badge rounded-pill bg-rich-black fc-white m-0 px-4"><h1>Timeline</h1></span>
+            </div>
             <VerticalTimeline animate={true}>
                 {timelineItems.map((item, index) => (
                     <VerticalTimelineElement
@@ -223,7 +225,14 @@ const CvTimeline = (): JSX.Element => {
                         iconStyle={item.iconStyle}
                     >
                         <h3 className="vertical-timeline-element-title">{item.title}</h3>
-                        <h4 className="vertical-timeline-element-subtitle">{item.location}</h4>
+                        <h6 className="vertical-timeline-element-subtitle pb-2" style={{color: "gray"}}>
+                            <span
+                                className="m-s-filled pe-1"
+                            >
+                                location_on
+                            </span>
+                            {item.location}
+                        </h6>
                         <div>{item.content}</div>
                         {item.modal && (
                             <div className='w-100 d-flex justify-content-end align-items-center mt-3'>
