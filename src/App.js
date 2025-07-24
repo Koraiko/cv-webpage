@@ -17,6 +17,7 @@ function App() {
       <CvOverview />
       <CvTimeline />
       <ContactMe />
+      <Footer />
     </>
   );
 }
