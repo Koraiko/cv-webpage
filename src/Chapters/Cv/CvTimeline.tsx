@@ -198,8 +198,8 @@ const CvTimeline = (): JSX.Element => {
     ];
 
     return (
-        <>
-            <div className='w-100 d-none d-timeline-flex justify-content-center align-items-center mb-n1 mt-4' id="TimelineComponent">
+        <div id="TimelineComponent">
+            <div className='w-100 d-none d-timeline-flex justify-content-center align-items-center mb-n1 mt-4'>
                 <span className="badge rounded-pill bg-rich-black fc-white m-0 px-4"><h1>Timeline</h1></span>
             </div>
             <div className='mb-n1 mt-4 d-flex d-timeline-none' id="TimelineComponent">
@@ -292,7 +292,7 @@ const CvTimeline = (): JSX.Element => {
                 size={modalData.size}
                 onClose={handleCloseModal}
             />
-        </>
+        </div>
     );
 };
 
