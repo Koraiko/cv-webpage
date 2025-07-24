@@ -3,10 +3,9 @@ import { useState } from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import { JSX } from 'react/jsx-runtime';
-import BasicModal, { BasicModalType } from '../shared/BasicModal';
-import SkillLabel from '../shared/Labels/SkillLabels';
-import { Button } from 'react-bootstrap';
-import ImageCarousel from '../shared/ImageCarousel';
+import BasicModal, { BasicModalType } from '../../shared/BasicModal';
+import SkillLabel from '../../shared/Labels/SkillLabels';
+import ImageCarousel from '../../shared/ImageCarousel';
 
 interface TimelineItemIcon {
     icon: string,
@@ -16,7 +15,6 @@ interface TimelineItemIcon {
 interface TimelineItem extends TimelineItemIcon {
     date: string,
     title: string,
-    location: string,
     content?: React.ReactNode,
     modal?: BasicModalType
 }
@@ -84,7 +82,6 @@ const CvTimeline = (): JSX.Element => {
     const timelineItems: TimelineItem[] = [
         {
             title: 'Volunteer at school',
-            location: 'Ulm, Germany',
             content:
                 <>
 
@@ -98,7 +95,6 @@ const CvTimeline = (): JSX.Element => {
         },
         {
             title: 'Abitur',
-            location: 'Ulm, Germany',
             content:
                 <>General university entrance qualification with basic computer science.</>,
             date: "09.2010 -- 07.2018",
@@ -106,7 +102,6 @@ const CvTimeline = (): JSX.Element => {
         },
         {
             title: 'Volunteer at university',
-            location: 'Ulm, Germany',
             content:
                 <>
                     <ul>
@@ -120,7 +115,6 @@ const CvTimeline = (): JSX.Element => {
         },
         {
             title: 'Bachelor of Science in Computer Science',
-            location: 'Ulm, Germany',
             content:
                 <>
                     <ul>
@@ -133,7 +127,6 @@ const CvTimeline = (): JSX.Element => {
         },
         {
             title: 'Frontend Developer at RehaCat+',
-            location: 'Ulm, Germany',
             content:
                 <>
                     <ul>
@@ -205,7 +198,7 @@ const CvTimeline = (): JSX.Element => {
 
     return (
         <>
-            <div className='w-100 d-flex justify-content-center align-items-center mb-n1 mt-4'>
+            <div className='w-100 d-flex justify-content-center align-items-center mb-n1 mt-4' id="TimelineComponent">
               <span className="badge rounded-pill bg-rich-black fc-white m-0 px-4"><h1>Timeline</h1></span>
             </div>
             <VerticalTimeline animate={true}>
@@ -224,15 +217,7 @@ const CvTimeline = (): JSX.Element => {
                         }
                         iconStyle={item.iconStyle}
                     >
-                        <h3 className="vertical-timeline-element-title">{item.title}</h3>
-                        <h6 className="vertical-timeline-element-subtitle pb-2" style={{color: "gray"}}>
-                            <span
-                                className="m-s-filled pe-1"
-                            >
-                                location_on
-                            </span>
-                            {item.location}
-                        </h6>
+                        <h3 className="vertical-timeline-element-title mb-2">{item.title}</h3>
                         <div>{item.content}</div>
                         {item.modal && (
                             <div className='w-100 d-flex justify-content-end align-items-center mt-3'>

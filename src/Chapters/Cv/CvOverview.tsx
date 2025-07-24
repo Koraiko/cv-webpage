@@ -43,7 +43,7 @@ const CvOverview: React.FC = () => {
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
 
   return (
-    <div className="mx-5 px-5" style={{ height: '25vh' }}>
+    <div className="mx-5 px-5" style={{ height: '25vh' }} id="TechStackComponent">
       <div className="d-flex flex-row flex-nowrap overflow-hidden h-100">
         {items.map((item, index) => {
           const isActive = index === activeIndex;

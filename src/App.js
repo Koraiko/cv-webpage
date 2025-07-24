@@ -1,8 +1,9 @@
 import './App.css';
-import AboutMe from './Intro/AboutMe.tsx';
-import CvOverview from './Cv/CvOverview.tsx';
-import CvTimeline from './Cv/CvTimeline';
-import ContactMe from './ContactMe/ContactMe.tsx';
+import AboutMe from './Chapters/AboutMe/AboutMe.tsx';
+import CvOverview from './Chapters/Cv/CvOverview';
+import CvTimeline from './Chapters/Cv/CvTimeline';
+import ContactMe from './Chapters/ContactMe/ContactMe';
+import Footer from './Layout/Footer';
 
 
 function App() {

@@ -5,7 +5,7 @@ class ContactMe extends Component {
   render() {
     return (
       <>
-        Test
+        <div id='ContactComponent'>Test</div>
       </>
     );
   }

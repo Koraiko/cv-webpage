@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ImageCarousel from '../shared/ImageCarousel';
-import { hoursWorked } from '../shared/variables';
-import ButtonLabel from '../shared/Labels/ButtonLabel';
+import ImageCarousel from '../../shared/ImageCarousel';
+import { hoursWorked } from '../../shared/variables';
+import ButtonLabel from '../../shared/Labels/ButtonLabel';
 
 class AboutMe extends Component {
     render(): React.ReactNode {
@@ -17,7 +17,7 @@ class AboutMe extends Component {
         ];
 
         return (
-            <div className="w-100 h-25 p-5">
+            <div className="w-100 h-25 p-5" id="AboutMeComponent">
                 {/* Box for intro */}
                 <div className='w-100'>
                     <div className='container'>
