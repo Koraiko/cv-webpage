@@ -26,50 +26,32 @@ function getIcon(type: 'Education' | 'Work' | 'Project' | 'Certificate' | 'Volun
         case 'Education':
             return {
                 icon: "school",
-                iconStyle: {
-                    background: 'rgb(33, 150, 243)',
-                    color: '#fff'
-                }
+                iconStyle: { backgroundColor: '#031926', color: '#fff' }
             };
         case 'Work':
             return {
                 icon: "work",
-                iconStyle: {
-                    background: 'rgb(33, 150, 243)',
-                    color: '#fff'
-                }
+                iconStyle: { backgroundColor: '#468189', color: '#fff' }
             };
         case 'Project':
             return {
                 icon: "code",
-                iconStyle: {
-                    background: 'rgb(33, 150, 243)',
-                    color: '#fff'
-                }
+                iconStyle: { backgroundColor: '#77ACA2', color: '#fff' }
             };
         case 'Certificate':
             return {
                 icon: "award_star",
-                iconStyle: {
-                    background: 'rgb(33, 150, 243)',
-                    color: '#fff'
-                }
+                iconStyle: { backgroundColor: '#9DBEBB', color: '#fff' }
             };
         case 'Volunteer':
             return {
                 icon: "volunteer_activism",
-                iconStyle: {
-                    background: 'rgb(33, 150, 243)',
-                    color: '#fff'
-                }
+                iconStyle: { backgroundColor: '#9DBEBB', color: '#fff' }
             };
         default:
             return {
                 icon: "info",
-                iconStyle: {
-                    background: 'rgb(33, 150, 243)',
-                    color: '#fff'
-                }
+                iconStyle: { backgroundColor: '#F8F0DE', color: '#fff' }
             };
     }
 };
@@ -219,7 +201,7 @@ const CvTimeline = (): JSX.Element => {
             }
         },
     ];
-    
+
     return (
         <>
             <h1>Timeline</h1>
