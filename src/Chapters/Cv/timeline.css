@@ -1,0 +1,140 @@
+/* Rotations */
+.rot-22 {
+    display: inline-block;
+    transform: rotate(22deg);
+}
+
+.rot-45 {
+    display: inline-block;
+    transform: rotate(45deg);
+}
+
+.rot-67 {
+    display: inline-block;
+    transform: rotate(67deg);
+}
+
+.rot-90 {
+    display: inline-block;
+    transform: rotate(90deg);
+}
+
+.rot--22 {
+    display: inline-block;
+    transform: rotate(-22deg);
+}
+
+.rot--45 {
+    display: inline-block;
+    transform: rotate(-45deg);
+}
+
+.rot--67 {
+    display: inline-block;
+    transform: rotate(-67deg);
+}
+
+.rot--90 {
+    display: inline-block;
+    transform: rotate(-90deg);
+}
+
+/* Circles */
+.circle {
+    border-radius: 50% !important;
+}
+
+.circle-xs {
+    width: 2rem !important;
+    height: 2rem !important;
+}
+
+.circle-sm {
+    width: 4vw !important;
+    height: 4vw !important;
+}
+
+.circle-md {
+    width: 8vw !important;
+    height: 8vw !important;
+}
+
+.circle-lg {
+    width: 16vw !important;
+    height: 16vw !important;
+}
+
+.circle-xl {
+    width: 32vw !important;
+    height: 32vw !important;
+}
+
+.circle-xxl {
+    width: 200vw !important;
+    height: 200vw !important;
+    margin-left: calc(-50vw) !important;
+    margin-right: calc(-50vw) !important;
+}
+
+/* Timeline addons */
+@media (min-width: 1170px) {
+    /* pc view only */
+    .circle-lg.timeline {
+        transform: translateX(120%) translateY(60%) !important;
+    }
+}
+
+
+/* visibility */
+@media (min-width: 1170px) {
+    /* pc view only */
+    .timeline.d-pc-flex {
+        display: flex !important;
+        transform: translateY(-6rem) !important;
+    }
+
+    .timeline.d-mobile-flex {
+        display: none !important;
+    }
+}
+@media (max-width: 1167px) {
+    /* pc view only */
+    .timeline.d-pc-flex {
+        display: none !important;
+    }
+
+    .timeline.d-mobile-flex {
+        display: flex !important;
+    }
+}
+
+/* titles */
+h1.timeline {
+    font-size: 5vw !important;
+    font-weight: 700 !important;
+}
+h2.timeline {
+    font-size: 2.4vw !important;
+    font-weight: 600 !important;
+}
+@media (max-width: 1169px) {
+    /* mobile view only */
+    h1.timeline {
+        transform: translateX(50%) translateY(-20%) !important;
+    }
+
+    h2.timeline {
+        transform: translateX(80%) translateY(-50%) !important;
+    }
+}
+
+@media (min-width: 1170px) {
+    /* pc view only */
+    h1.timeline {
+        transform: translateX(-35%) translateY(10%) rotate(-30deg) !important;
+    }
+
+    h2.timeline {
+        transform: translateX(15%) translateY(-165%) rotate(-30deg) !important;
+    }
+}

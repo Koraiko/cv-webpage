@@ -6,6 +6,7 @@ import { JSX } from 'react/jsx-runtime';
 import BasicModal, { BasicModalType } from '../../shared/BasicModal';
 import SkillLabel from '../../shared/Labels/SkillLabels';
 import ImageCarousel from '../../shared/ImageCarousel';
+import "./timeline.css";
 
 interface TimelineItemIcon {
     icon: string,
@@ -198,10 +199,14 @@ const CvTimeline = (): JSX.Element => {
 
     return (
         <>
-            <div className='w-100 d-flex justify-content-center align-items-center mb-n1 mt-4' id="TimelineComponent">
-              <span className="badge rounded-pill bg-rich-black fc-white m-0 px-4"><h1>Timeline</h1></span>
+            <div className='w-100 d-none d-timeline-flex justify-content-center align-items-center mb-n1 mt-4' id="TimelineComponent">
+                <span className="badge rounded-pill bg-rich-black fc-white m-0 px-4"><h1>Timeline</h1></span>
             </div>
-            <VerticalTimeline animate={true}>
+            <div className='mb-n1 mt-4 d-flex d-timeline-none' id="TimelineComponent">
+                <span className="badge rounded-pill bg-rich-black fc-white m-0 pe-4 ps-5 z-1"
+                    style={{ transform: 'translateX(-2rem)' }}><h1>Timeline</h1></span>
+            </div>
+            <VerticalTimeline>
                 {timelineItems.map((item, index) => (
                     <VerticalTimelineElement
                         key={index}
@@ -232,7 +237,53 @@ const CvTimeline = (): JSX.Element => {
                         )}
                     </VerticalTimelineElement>
                 ))}
+                <VerticalTimelineElement />
             </VerticalTimeline>
+            {/* Interested-Element - PC */}
+            <div className='w-100 timeline d-pc-flex justify-content-center align-items-center mt-2 pt-1 pb-4'>
+                <div className="circle circle-xl z-0 bg-cambridge-blue position-relative">
+                    <div className="circle circle-md z-0 bg-teal" />
+                    <div
+                        className="circle circle-lg z-1 bg-ash-gray"
+                        style={{ transform: 'translateX(120%)translateY(60%)' }}
+                    />
+                    <div className='position-absolute top-50 start-50 translate-middle text-center'>
+                        <p className='m-0 fw-bold shadows-into-light-two-regular'
+                            style={{
+                                transform: 'translateX(-35%)translateY(10%)rotate(-30deg)',
+                                fontSize: '5vw',
+                            }}>Interested?</p>
+                        <p className='m-0 fw-bold text-nowrap'
+                            style={{
+                                transform: 'translateX(15%)translateY(-165%)rotate(-30deg)',
+                                fontSize: '2.4vw',
+                            }}>I'm just a message away.</p>
+                    </div>
+                </div>
+            </div>
+            {/* Interested-Element - Mobile */}
+            <div className='w-100 timeline d-mobile-flex mt-2 pt-1 pb-4'
+                style={{ transform: 'translateY(-7rem)' }}
+            >
+                <div className="circle circle-xl position-relative"
+                    style={{ transform: 'translateX(-40%)' }} >
+                    <div
+                        className="circle circle-lg z-0 bg-ash-gray"
+                        style={{ transform: 'translateX(160%)translateY(80%)' }}
+                    />
+                    <div className="position-absolute w-100 h-100 bg-cambridge-blue z-1" style={{ borderRadius: '50%', overflow: 'hidden', top: 0, left: 0 }} />
+                    <div
+                        className="position-relative circle circle-md z-3 bg-teal"
+                        style={{ transform: 'translateX(300%)translateY(-200%)' }}
+                    />
+
+                    <div className='position-absolute top-50 start-50 translate-middle text-center z-2'>
+                        <h1 className='m-0 shadows-into-light-two-regular timeline'>Interested?</h1>
+                        <h2 className='m-0 text-nowrap timeline'>I'm just a message away.</h2>
+                    </div>
+                </div>
+            </div>
+
 
             <BasicModal
                 show={modalData.show || false}
