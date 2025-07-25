@@ -1,0 +1,6 @@
+.scroll-progress-bar {
+    height: 5px;
+    border-width: 10px;
+    transition: transform 2s ease-out;
+    will-change: transform;
+}

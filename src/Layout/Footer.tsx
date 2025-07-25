@@ -1,7 +1,9 @@
 import 'react-vertical-timeline-component/style.min.css';
 import { JSX } from 'react/jsx-runtime';
+import "./Footer.css";
+import ProgressBar from './ProgressBar';
 
-interface FooterItem {
+export interface FooterItem {
     iconName: string;
     label: string;
     linkToId: string;
@@ -51,12 +53,12 @@ const Footer = (): JSX.Element => {
                         key={index}
                         className={
                             'd-flex flex-column align-items-center justify-content-center ' +   // child behaviour
-                            'm-2 h-100 '    // margin and height to look nice
+                            'h-100 '    // margin and height to look nice
                         }
                         onClick={() => handleItemClick(item.linkToId)}
                     >
-                        <span className="m-s-filled fs-2">{item.iconName}</span><br />
-                        <p className='text-nowrap'>{item.label}</p>
+                        <span className="m-s-filled fs-2">{item.iconName}</span>
+                        <p className='text-nowrap m-0 pb-2'>{item.label}</p>
                     </div>
                 ))}
             </>
@@ -71,47 +73,49 @@ const Footer = (): JSX.Element => {
     const handleItemClick = (linkToId: string) => {
         const element = document.getElementById(linkToId);
         if (!element) return;
-        
+
         const start = window.pageYOffset;
         const target = element.offsetTop - 100;
         const distance = target - start;
-        
+
         let progress = 0;
-        
+
         const animate = () => {
             progress += 0.02; // Fixed step size
-            
+
             if (progress >= 1) {
                 window.scrollTo(0, target);
                 return;
             }
-            
+
             const ease = progress * (2 - progress);
             window.scrollTo(0, start + distance * ease);
             requestAnimationFrame(animate);
         };
-        
+
         requestAnimationFrame(animate);
     };
 
     return (
         <>
-            {/* box to prevent overlaying normal page */}
-            <div className={'d-none d-sm-block'} style={{ height: footerHeight }} />
-            {/* PC-Footer */}
-            <footer
-                className={
-                    'position-fixed bottom-0 w-100 ' +   // bottom position on view + full width
-                    'alert alert-light m-0 ' +   // light background
-                    'py-3 ' +    // padding on y-axis(left/right)
-                    'd-flex justify-content-around align-items-center flex-nowrap ' +   // child content layout
-                    'd-none d-sm-flex' // hide on mobile
-                }
-                style={{ height: footerHeight }}
-            >
-                {renderFooterItems(items)}
-            </footer>
-            {/* TODO: Mobile-Footer */}
+            {/* PC */}
+            <div className={'position-sticky bottom-0 d-none d-sm-flex m-0'}>
+                <footer
+                    className={
+                        'position-sticky bottom-0 w-100 ' +
+                        'bg-light ' +
+                        'm-0 px-0 ' +
+                        'd-flex flex-column'
+                    }
+                    style={{ height: footerHeight, zIndex: 1000 }}
+                >
+                    <ProgressBar items={items} />
+                    <div className='w-100 d-flex justify-content-around align-items-center flex-nowrap m-0' style={{ height: footerHeight }}>
+                        {renderFooterItems(items)}
+                    </div>
+                </footer>
+            </div>
+            {/* Mobile */}
         </>
     );
 };
