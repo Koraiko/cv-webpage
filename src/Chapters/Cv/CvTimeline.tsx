@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import { JSX } from 'react/jsx-runtime';
 import BasicModal, { BasicModalType } from '../../shared/BasicModal';
 import SkillLabel from '../../shared/Labels/SkillLabels';
 import ImageCarousel from '../../shared/ImageCarousel';
@@ -55,7 +54,7 @@ function getIcon(type: 'Education' | 'Work' | 'Project' | 'Certificate' | 'Volun
     }
 };
 
-const CvTimeline = (): JSX.Element => {
+const CvTimeline = (): React.ReactNode => {
     const [modalData, setModalData] = useState<BasicModalType>({
         show: false,
         title: '',

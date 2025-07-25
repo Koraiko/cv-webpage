@@ -1,5 +1,4 @@
 import 'react-vertical-timeline-component/style.min.css';
-import { JSX } from 'react/jsx-runtime';
 import "./Footer.css";
 import ProgressBar from './ProgressBar';
 
@@ -8,7 +7,7 @@ export interface FooterItem {
     label: string;
     linkToId: string;
 }
-const Footer = (): JSX.Element => {
+const Footer = (): React.ReactNode => {
     const footerHeight = '100px';
 
     const items: FooterItem[] = [
