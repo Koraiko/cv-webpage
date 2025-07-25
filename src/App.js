@@ -1,4 +1,3 @@
-import './App.css';
 import AboutMe from './Chapters/AboutMe/AboutMe.tsx';
 import CvOverview from './Chapters/Cv/CvOverview';
 import CvTimeline from './Chapters/Cv/CvTimeline';
@@ -10,17 +9,18 @@ function App() {
   const inspirationCvPages = [{
     name: 'Aditya Seth',
     url: 'https://adityaseth.in/'
-  },{
+  }, {
     name: "Dr. Aditya Kumar Gupta",
     url: 'https://aditya30051993.github.io/my-portfolio'
   },
   {
     name: 'Abhishek Ganvir (TODO: use this)',
     url: 'https://abhishekganvir.vercel.app/'
-  },{
+  }, {
     name: 'Tajmirul',
     url: 'https://www.me.toinfinite.dev/'
   }];
+  
   return (
     <>
       <div className="alert alert-danger alert-dismissible m-3 text-center" role="alert">
