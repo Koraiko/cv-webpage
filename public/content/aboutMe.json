@@ -1,0 +1,10 @@
+{
+    "title": "About Me",
+    "subTitle": "- FRONTEND DEVELOPER -",
+    "content": [
+        "I'm a frontend developer with a focus on clean code, intuitive interfaces, and user-centered design. I enjoy working with modern tools like React and TypeScript and continuously aim to improve both user experience and code quality.",
+        "My first attempts at HTML and CSS go back to high school — the results weren’t great, but the curiosity stuck. Since March 2023, I’ve been deepening my skills through university and personal projects using HTML, CSS, JavaScript, and TypeScript. Since October 2024, I’ve also been working with frameworks like React and Angular.",
+        "I value clear structure, long-term maintainability, and learning from real-world challenges — whether through collaborative projects or by improving existing systems. I'm especially motivated by projects where well-structured code meets a strong UX focus."
+    ],
+    "footer": "That first website? Thankfully, it never made it online."
+}
