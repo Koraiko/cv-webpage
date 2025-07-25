@@ -229,9 +229,9 @@ const CvTimeline = (): React.ReactNode => {
                         <div>{item.content}</div>
                         {item.modal && (
                             <div className='w-100 d-flex justify-content-end align-items-center mt-3'>
-                                <a href="#" className="link-secondary me-4 text-decoration-none d-flex align-items-center" onClick={(e) => handleOpenModal(e, item.modal)}>
+                                <button type="button" className="btn link-secondary me-4 text-decoration-none d-flex align-items-center p-0 border-0 bg-transparent" onClick={(e) => handleOpenModal(e, item.modal)}>
                                     <span className="m-s-filled fs-5 me-1">tab_move</span> <span className="text-decoration-underline">more</span>
-                                </a>
+                                </button>
                             </div>
                         )}
                     </VerticalTimelineElement>
