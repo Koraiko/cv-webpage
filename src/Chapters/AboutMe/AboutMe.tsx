@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ImageCarousel from '../../shared/ImageCarousel';
-import { hoursWorked } from '../../shared/variables';
 import ButtonLabel from '../../shared/Labels/ButtonLabel';
 
 interface AboutMeData {
@@ -8,6 +7,7 @@ interface AboutMeData {
     subTitle: string;
     content: string[];
     footer: string;
+    tags?: { icon: string; text: string }[];
 }
 
 interface AboutMeState {
@@ -54,6 +54,7 @@ class AboutMe extends Component<{}, AboutMeState> {
                                 <ImageCarousel
                                     imageArray={jobApplicationPhotos}
                                     id={"aboutMeCarousel"}
+                                    roundedImg={true}
                                 />
                             </div>
                             {/* right side (intro text) */}
@@ -71,17 +72,18 @@ class AboutMe extends Component<{}, AboutMeState> {
                             </div>
                         </div>
                     </div>
-                    <hr className='border-3 border-teal'/>
-                    <div className='d-flex justify-content-center w-100 flex-wrap'>
-                        <ButtonLabel className='bg-cambridge-blue'>
-                            <span className="m-s-filled pe-2 fs-4">work_history</span>
-                            {hoursWorked}+ hours coding
-                        </ButtonLabel>
-                        <ButtonLabel className='bg-cambridge-blue'>
-                            <span className="m-s-filled pe-2 fs-4">tabs</span>
-                            20 tabs open
-                        </ButtonLabel>
-                    </div>
+                    {(this.state.aboutMe?.tags || []).length > 0 ? (
+                        <>
+                            <hr className='border-3 border-teal' />
+                            <div className='d-flex justify-content-center w-100 flex-wrap'>
+                                {this.state.aboutMe?.tags?.map((tag, index) => (
+                                    <ButtonLabel key={index} className='bg-cambridge-blue'>
+                                        <span className={`m-s-filled pe-2 fs-4`}>{tag.icon}</span>
+                                        {tag.text}
+                                    </ButtonLabel>
+                                ))}
+                            </div>
+                        </>) : null}
                 </div>
             </div>
         );
