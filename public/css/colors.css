@@ -6,6 +6,9 @@
 .fc-rich-black {
 	color: #031926 !important;
 }
+.border-rich-black {
+    border-color: #031926 !important;
+}
 /* Teal */
 .border-teal {
     border-color: #468189 !important;
@@ -42,6 +45,9 @@
 /* Ash gray */
 .bg-ash-gray {
 	background-color: #9DBEBB !important;
+}
+.border-ash-gray {
+	border-color: #9DBEBB !important;
 }
 .fc-ash-gray {
 	color: #9DBEBB !important;
