@@ -199,11 +199,11 @@ const CvTimeline = (): JSX.Element => {
 
     return (
         <div id="TimelineComponent">
-            <div className='w-100 d-none d-timeline-flex justify-content-center align-items-center mb-n1 mt-4'>
+            <div className='w-100 timeline d-pc-flex justify-content-center align-items-center mt-4'>
                 <span className="badge rounded-pill bg-rich-black fc-white m-0 px-4"><h1>Timeline</h1></span>
             </div>
-            <div className='mb-n1 mt-4 d-flex d-timeline-none' id="TimelineComponent">
-                <span className="badge rounded-pill bg-rich-black fc-white m-0 pe-4 ps-5 z-1"
+            <div className='mb-n1 mt-4 timeline d-mobile-flex' id="TimelineComponent">
+                <span className="badge rounded-pill bg-rich-black fc-white m-0 pe-4 ps-5"
                     style={{ transform: 'translateX(-2rem)' }}><h1>Timeline</h1></span>
             </div>
             <VerticalTimeline>
@@ -240,7 +240,7 @@ const CvTimeline = (): JSX.Element => {
                 <VerticalTimelineElement />
             </VerticalTimeline>
             {/* Interested-Element - PC */}
-            <div className='w-100 timeline d-pc-flex justify-content-center align-items-center mt-2 pt-1 pb-4'>
+            <div className='w-100 timeline d-pc-flex bottom justify-content-center align-items-center mt-2 pt-1 pb-4'>
                 <div className="circle circle-xl z-0 bg-cambridge-blue position-relative">
                     <div className="circle circle-md z-0 bg-teal" />
                     <div

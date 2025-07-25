@@ -90,6 +90,8 @@
     /* pc view only */
     .timeline.d-pc-flex {
         display: flex !important;
+    }
+    .timeline.d-pc-flex.bottom {
         transform: translateY(-6rem) !important;
     }
 
