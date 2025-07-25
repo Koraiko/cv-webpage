@@ -7,37 +7,41 @@ export interface FooterItem {
     label: string;
     linkToId: string;
 }
+
+const allItems: FooterItem[] = [
+    {
+        iconName: "frame_person",
+        label: "About me",
+        linkToId: "AboutMeComponent"
+    },
+    {
+        iconName: "filter_alt",
+        label: "Filter",
+        linkToId: "FilterComponent"
+    },
+    {
+        iconName: "lightbulb_2",
+        label: "Tech Stack",
+        linkToId: "TechStackComponent"
+    },
+    {
+        iconName: "timeline",
+        label: "Timeline",
+        linkToId: "TimelineComponent"
+    },
+    {
+        iconName: "id_card",
+        label: "Contact",
+        linkToId: "ContactComponent"
+    },
+];
+
 const Footer = (): React.ReactNode => {
     const footerHeight = '100px';
 
-    const items: FooterItem[] = [
-        {
-            iconName: "frame_person",
-            label: "About me",
-            linkToId: "AboutMeComponent"
-        },
-        {
-            iconName: "filter_alt",
-            label: "Filter",
-            linkToId: "FilterComponent"
-        },
-        {
-            iconName: "lightbulb_2",
-            label: "Tech Stack",
-            linkToId: "TechStackComponent"
-        },
-        {
-            iconName: "timeline",
-            label: "Timeline",
-            linkToId: "TimelineComponent"
-        },
-        {
-            iconName: "id_card",
-            label: "Contact",
-            linkToId: "ContactComponent"
-        },
-    ];
-
+    const items = allItems.filter(item => {
+        return document.getElementById(item.linkToId) !== null;
+    });
     /**
      * Renders the footer items.
      * @param itemsArray Array of footer items to render
