@@ -1,7 +1,7 @@
 import 'react-vertical-timeline-component/style.min.css';
 import { JSX } from 'react/jsx-runtime';
 import "./Footer.css";
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { FooterItem } from './Footer';
 import ProgressBarBasic from './ProgressBarBasic';
 import { useScrollMetrics } from '../shared/hooks/useScrollMetrics';
@@ -23,8 +23,10 @@ const ProgressBar = ({ items }: { items: FooterItem[] }): JSX.Element => {
     const [waypoints, setWaypoints] = useState<SectionWaypoint[]>([]);
     
     const getScrollMetrics = useScrollMetrics();
-    const sectionDetector = new SectionDetector(waypoints);
-    const progressCalculator = new ProgressCalculator(waypoints);
+    
+    // Memoize detector and calculator to prevent recreation on every render
+    const sectionDetector = useMemo(() => new SectionDetector(waypoints), [waypoints]);
+    const progressCalculator = useMemo(() => new ProgressCalculator(waypoints), [waypoints]);
 
     /**
      * Calculates waypoints for all navigation sections
