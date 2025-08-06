@@ -46,6 +46,15 @@ export class SectionDetector {
             }
         }
         
+        // If no section has been passed, return the first valid section (for top of page)
+        if (!currentSection) {
+            for (let i = 0; i < this.waypoints.length; i++) {
+                if (isValidWaypoint(this.waypoints[i])) {
+                    return { currentSection: this.waypoints[i], currentSectionIndex: i };
+                }
+            }
+        }
+        
         return currentSection ? { currentSection, currentSectionIndex } : this.getLastValidSection();
     }
 

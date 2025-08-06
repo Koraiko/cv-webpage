@@ -1,6 +1,7 @@
 import 'react-vertical-timeline-component/style.min.css';
 import "./Footer.css";
 import ProgressBar from './ProgressBar';
+import { useState, useEffect } from 'react';
 
 export interface FooterItem {
     iconName: string;
@@ -8,40 +9,59 @@ export interface FooterItem {
     linkToId: string;
 }
 
+interface FooterProps {
+    onNavigate: (pageIndex: number) => void;
+    pages: React.ReactElement[];
+    currentPageIndex: number;
+}
+
+// todo: make this automatic or move to parent component
 const allItems: FooterItem[] = [
     {
         iconName: "frame_person",
         label: "About me",
-        linkToId: "AboutMeComponent"
+        linkToId: "AboutMe"
     },
     {
         iconName: "filter_alt",
-        label: "Filter",
-        linkToId: "FilterComponent"
-    },
-    {
-        iconName: "lightbulb_2",
-        label: "Tech Stack",
-        linkToId: "TechStackComponent"
+        label: "CV Overview",
+        linkToId: "CvOverview"
     },
     {
         iconName: "timeline",
         label: "Timeline",
-        linkToId: "TimelineComponent"
+        linkToId: "CvTimeline"
     },
     {
         iconName: "id_card",
         label: "Contact",
-        linkToId: "ContactComponent"
+        linkToId: "ContactMe"
+    },
+    {
+        iconName: "lightbulb_2",
+        label: "Inspiration",
+        linkToId: "Inspiration"
     },
 ];
 
-const Footer = (): React.ReactNode => {
+const Footer = ({ onNavigate, pages, currentPageIndex }: FooterProps): React.ReactNode => {
     const footerHeight = '100px';
+    const [items, setItems] = useState<FooterItem[]>([]);
 
-    const items = allItems.filter(item => {
-        return document.getElementById(item.linkToId) !== null;
-    });
+    // Filter items based on available pages
+    useEffect(() => {
+        const filterAvailableItems = () => {
+            const availableItems = allItems.filter(item => {
+                return pages.some(page => {
+                    const componentName = typeof page.type === 'string' ? page.type : page.type.name;
+                    return componentName === item.linkToId;
+                });
+            });
+            setItems(availableItems);
+        };
+
+        filterAvailableItems();
+    }, [pages]);
     /**
      * Renders the footer items.
      * @param itemsArray Array of footer items to render
@@ -69,50 +89,35 @@ const Footer = (): React.ReactNode => {
     }
 
     /**
-     * scrolls to position of an element with a smooth animation
-     * @param linkToId ID of the element to scroll to
+     * Navigates to the page corresponding to the clicked footer item
+     * @param linkToId ID of the component to navigate to
      * @returns void
      */
     const handleItemClick = (linkToId: string) => {
-        const element = document.getElementById(linkToId);
-        if (!element) return;
-
-        const start = window.pageYOffset;
-        const target = element.offsetTop - 100;
-        const distance = target - start;
-
-        let progress = 0;
-
-        const animate = () => {
-            progress += 0.02; // Fixed step size
-
-            if (progress >= 1) {
-                window.scrollTo(0, target);
-                return;
-            }
-
-            const ease = progress * (2 - progress);
-            window.scrollTo(0, start + distance * ease);
-            requestAnimationFrame(animate);
-        };
-
-        requestAnimationFrame(animate);
+        const pageIndex = pages.findIndex(page => {
+            const componentName = typeof page.type === 'string' ? page.type : page.type.name;
+            return componentName === linkToId;
+        });
+        
+        if (pageIndex !== -1) {
+            onNavigate(pageIndex);
+        }
     };
 
     return (
         <>
             {/* PC */}
-            <div className={'position-sticky bottom-0 d-none d-sm-flex m-0'}>
+            <div className={'position-fixed bottom-0 d-none d-sm-flex m-0'}>
                 <footer
                     className={
-                        'position-sticky bottom-0 w-100 ' +
+                        'position-fixed bottom-0 w-100 ' +
                         'bg-light ' +
                         'm-0 px-0 ' +
                         'd-flex flex-column'
                     }
                     style={{ height: footerHeight, zIndex: 1000 }}
                 >
-                    <ProgressBar items={items} />
+                    <ProgressBar items={items} currentPageIndex={currentPageIndex} pages={pages} />
                     <div className='w-100 d-flex justify-content-around align-items-center flex-nowrap m-0' style={{ height: footerHeight }}>
                         {renderFooterItems(items)}
                     </div>
