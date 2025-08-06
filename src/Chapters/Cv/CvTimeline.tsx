@@ -136,6 +136,31 @@ const CvTimeline = (): React.ReactNode => {
             ...getIcon('Education'),
         },
         {
+            title: 'Project: OBS Body-doubling Overlay',
+            content:
+                <>
+                    <ul>
+                        <li>Goal: Should dynamically update the overlay based on the user's current learn status.</li>
+                        <li>Shows time, current occupation (work/ study/ ...), task-list and current pc-time of user.</li>
+                    </ul>
+                </>,
+            date: "???",
+            ...getIcon('Project'),
+        },
+        {
+            title: 'Project: Python Client',
+            content:
+                <>
+                    <ul>
+                        <li>Small project to understand Python.</li>
+                        <li>Goal: Build a client that gets browser information and displays which rooms in the university are free in a specific time.</li>
+                        <li>Goal not reached, because student work & thesis began</li>
+                    </ul>
+                </>,
+            date: "09.2025",
+            ...getIcon('Project'),
+        },
+        {
             title: 'Frontend Developer at RehaCat+',
             content:
                 <>
@@ -203,6 +228,17 @@ const CvTimeline = (): React.ReactNode => {
                     </>
                 ),
             }
+        },
+        {
+            title: 'Project: Portfolio website',
+            content:
+                <>
+                    <ul>
+                        <li>Programmed this, when I was bored</li>
+                    </ul>
+                </>,
+            date: "07.2025 -- now",
+            ...getIcon('Project'),
         },
     ];
 
