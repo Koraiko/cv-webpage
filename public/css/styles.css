@@ -1,0 +1,15 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
+.h-min-100vh {
+  min-height: 100vh;
+}
+.scroll-box {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-align: start;
+}
