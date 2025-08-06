@@ -1,3 +1,16 @@
+> ⚠️ **Work in Progress**  
+> This repository is currently under development and does not yet include a license.  
+> Please do not use or redistribute the code until a license is added.
+
+**TODO (management; not code):**
+- [ ] Write full README
+- [ ] Add license
+- [ ] remove unneeded npm imports
+
+This repository is part of an ongoing portfolio project I'm building while job searching.
+
+
+---
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

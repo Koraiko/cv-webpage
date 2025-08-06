@@ -1,9 +1,11 @@
 import { SectionWaypoint, isValidWaypoint } from './waypoints';
 
 export interface CurrentSection {
-    currentSection: SectionWaypoint | null;
-    currentSectionIndex: number;
+    currentSection: SectionWaypoint | null; // The currently active section waypoint
+    currentSectionIndex: number; // The index of the currently active section
 }
+
+// TODO: refactor this
 
 /**
  * Finds the currently active section based on scroll position
@@ -69,8 +71,8 @@ export class SectionDetector {
             const elementTop = element.offsetTop - 100;
             const elementHeight = element.offsetHeight;
             const elementBottom = elementTop + elementHeight;
-            
-            // Small section detection and buffer calculation
+
+            // Section detection and buffer calculation
             const isSmallSection = elementHeight < 300;
             const bufferSize = isSmallSection 
                 ? Math.max(elementHeight, 200)  // Large buffer for small sections

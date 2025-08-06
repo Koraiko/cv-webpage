@@ -1,6 +1,7 @@
 import { SectionWaypoint } from './waypoints';
 import { CurrentSection } from './sectionDetector';
 
+// TODO: Copilot helped with calculateProgress bug => maybe refactor this after understanding the logic/ math
 /**
  * Calculates progress using justify-content-around positioning
  * Formula: ((2 * index + 1) / (2 * totalItems)) * 100

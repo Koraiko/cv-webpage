@@ -1,21 +1,31 @@
 import React from 'react';
 
 export interface BasicModalType {
-    show?: boolean,
-    title?: React.ReactNode | string;
-    content: React.ReactNode;
-    footer?: React.ReactNode;
-    size?: 'sm' | 'lg' | 'xl';
+    show?: boolean, // Whether the modal is visible (trigger from outside)
+    title?: React.ReactNode | string; // Title of the modal
+    content: React.ReactNode; // Main content of the modal
+    footer?: React.ReactNode; // Optional footer content
+    size?: 'sm' | 'lg' | 'xl'; // Optional size of the modal
 }
 interface BasicModalProps extends BasicModalType {
-    show: boolean;
-    onClose: () => void;
+    show: boolean;  // Whether the modal is visible (trigger from outside)
+    onClose: () => void;    // Function to call when the modal should be closed
 }
 
+/**
+ * Basic modal component for displaying content in a modal dialog.
+ * @param show - Whether the modal is visible (trigger from outside)
+ * @param title - Title of the modal
+ * @param content - Main content of the modal
+ * @param footer - Optional footer content
+ * @param onClose - Function to call when the modal should be closed
+ * @param size - Optional size of the modal ('sm', 'lg', 'xl')
+ * @returns JSX.Element | null
+ */
 const BasicModal: React.FC<BasicModalProps> = ({ show, title, content, footer, onClose, size }) => {
     if (!show) return null;
 
-    const handleBackdropClick = (e: React.MouseEvent) => {
+    function handleBackdropClick(e: React.MouseEvent) {
         if (e.target === e.currentTarget) {
             onClose();
         }

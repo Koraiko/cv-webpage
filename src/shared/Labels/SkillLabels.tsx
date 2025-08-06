@@ -3,20 +3,25 @@ import { JSX } from 'react/jsx-runtime';
 
 type Skilltype = "progLang" | "framework_lib" | "tool_ide" | "os" | "db" | "methodology" | "other";
 type SkillList = {
-    progLang?: string[];
-    framework_lib?: string[];
-    tool_ide?: string[];
-    os?: string[];
-    db?: string[];
-    methodology?: string[];
-    other?: string[];
+    progLang?: string[];    // Programming languages
+    framework_lib?: string[];    // Frameworks and libraries
+    tool_ide?: string[];    // Tools and IDEs
+    os?: string[];    // Operating systems
+    db?: string[];    // Databases
+    methodology?: string[];    // Methodologies
+    other?: string[];   // Other skills
 };
 
 interface SkillLabelProps {
-    content: React.ReactNode | SkillList,
-    typeLineBreak?: boolean
+    content: React.ReactNode | SkillList,   // Content to display
+    typeLineBreak?: boolean // If true, skill type will be displayed in a column
 }
 
+/**
+ * Get the style for a specific skill type.
+ * @param type - The type of skill to get the style for
+ * @returns The CSS properties for the skill type
+ */
 function getStyleOfSkill(type: Skilltype): React.CSSProperties {
     switch (type) {
         case "progLang":
@@ -38,6 +43,12 @@ function getStyleOfSkill(type: Skilltype): React.CSSProperties {
     }
 }
 
+/**
+ * SkillLabel component for displaying a list of skills with appropriate styling.
+ * @param content - The content to display
+ * @param typeLineBreak - If true, skill type will be displayed in a column
+ * @returns JSX.Element
+ */
 const SkillLabel = ({ content, typeLineBreak = false }: SkillLabelProps): JSX.Element => {
     function printSkillList(skillList: SkillList) {
         let returnJSX: JSX.Element[] = [];

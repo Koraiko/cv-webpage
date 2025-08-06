@@ -1,15 +1,15 @@
 import { JSX } from 'react/jsx-runtime';
 
 interface ProgressBarBasicProps {
-    /** Progress value as a percentage (0-100) */
+    // Progress value as a percentage (0-100)
     progress: number;
-    /** Optional CSS class name for styling */
+    // Optional CSS class name for styling (Background & Foreground)
     classNameBackground?: string;
     classNameProgress?: string;
 }
 
 /**
- * Basic progress bar component with background track and progress fill.
+ * Basic vertical progress bar component with background track and progress fill.
  * 
  * @param progress - Progress value as a percentage (0-100)
  * @param classNameBackground - Background classes for the progress track

@@ -2,10 +2,17 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ImageInfo {
-    path: string;
-    description?: string;
+    path: string;   // path to img file
+    description?: string;   // optional description of the image
 }
 
+/**
+ * Image carousel component for displaying a series of images. Scrolls on its own through the images.
+ * @param imageArray information about the images (refer to ImageInfo interface)
+ * @param roundedImg if true, images will be displayed with rounded corners
+ * @param id unique identifier for the carousel, used for linking controls and indicators
+ * @returns JSX.Element | null
+ */
 const ImageCarousel: React.FC<{
     imageArray: ImageInfo[];
     roundedImg?: boolean;
@@ -19,7 +26,7 @@ const ImageCarousel: React.FC<{
             <div className="carousel-inner">
                 {/* image number indication (middle bottom) */}
                 <div className="carousel-indicators">
-                    {imageArray.length < 2 ? null :imageArray.map((_, index) => (
+                    {imageArray.length < 2 ? null : imageArray.map((_, index) => (
                         <button
                             key={index}
                             type="button"
@@ -49,7 +56,7 @@ const ImageCarousel: React.FC<{
                         )}
                     </div>
                 ))}
-                {/* back/ next buttons */}
+                {/* back/ next buttons (left/right middle) */}
                 {
                     imageArray.length < 2 ? null :
                         <>

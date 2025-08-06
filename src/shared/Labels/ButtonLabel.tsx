@@ -1,5 +1,13 @@
 import React from 'react';
 
+/**
+ * ButtonLabel component for displaying a button with content.
+ * @param children - The content to display inside the button
+ * @param style - Optional inline styles for the button
+ * @param onClick - Optional click handler for the button
+ * @param className - Optional additional class names for the button
+ * @returns JSX.Element
+ */
 const ButtonLabel: React.FC<{ 
     children: React.ReactNode,
     style?: React.CSSProperties,

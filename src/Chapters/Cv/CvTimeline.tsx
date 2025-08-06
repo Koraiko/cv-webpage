@@ -7,6 +7,16 @@ import SkillLabel from '../../shared/Labels/SkillLabels';
 import ImageCarousel from '../../shared/ImageCarousel';
 import "./timeline.css";
 
+// TODO: Documentation, add Projects (ask if I can use Pictures or recreate my additions), make this filterable, ...
+/*
+ * TODO:
+ * - [ ] make this filterable (skills, languages, ...)
+ * - [ ] add projects (ask if I can use Pictures or I need to recreate my additions)
+ * - [ ] write my own timeline Component (to lessen npm security threads; 35+ issues in react-vertical-timeline-component)
+ * - [ ] Documentation of code
+ * - [ ] move timelineItems into own json file (text should be in public/ folder and imported)
+ */
+
 interface TimelineItemIcon {
     icon: string,
     iconStyle: React.CSSProperties
@@ -283,7 +293,8 @@ const CvTimeline = (): React.ReactNode => {
                 </div>
             </div>
 
-
+            {/* Modal for displaying details */}
+            {/* TODO: move this into App.js if possible to have only one modal */}
             <BasicModal
                 show={modalData.show || false}
                 title={modalData.title}
