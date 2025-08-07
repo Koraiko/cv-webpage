@@ -14,6 +14,9 @@ const Inspiration = () => {
     }, {
         name: 'Tajmirul',
         url: 'https://www.me.toinfinite.dev/'
+    }, {
+        name: 'Blue water picture from Eunique Deeann on Unsplash',
+        url: 'https://unsplash.com/de/fotos/blaues-wasser--oK7LnDmtk0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'
     }];
 
     return (
