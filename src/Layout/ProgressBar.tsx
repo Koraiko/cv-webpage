@@ -35,7 +35,7 @@ const ProgressBar = ({ items, currentPageIndex, pages }: ProgressBarProps): JSX.
             return;
         }
 
-        // Find which footer item corresponds to the current page => if current page does not exist in footer dont update
+        // Find which footer item corresponds to the current page => if current page does not exist in footer dont update progress
         const currentPage = pages[currentPageIndex];
         if (!currentPage) {
             setProgress(prevProgress => prevProgress);

@@ -15,7 +15,7 @@ interface FooterProps {
     currentPageIndex: number;
 }
 
-// todo: make this automatic or move to parent component
+// todo: make this automatic or move to parent component (pages?)
 const allItems: FooterItem[] = [
     {
         iconName: "frame_person",
