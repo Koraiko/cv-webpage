@@ -11,10 +11,8 @@ If you would like to **run this project locally** (a hosted version is planned f
     - This project uses npm (Node Package Manager), which comes with Node.js. Installation is required to run the project locally.
 4. Start the development server
     - Open a terminal in the project folder and run:
-    ```
-    npm install
-    npm start
-    ```
+        - `npm install`: installs all necessary dependencies
+        - `npm start`: starts the project
     - Your browser should open automatically. If not, visit http://localhost:3000.
 
 **For Code Reviewers:**
