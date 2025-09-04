@@ -218,6 +218,7 @@ const Intro: React.FC = () => {
         <div
             className={`w-100 ${STYLES.LAYOUT.FULL_COLUMN}`}
             style={{ height: '100vh' }}
+            id='AboutMeComponent'
         >
             {/* Top row - 1/6 of viewport height */}
             <GridSection

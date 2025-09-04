@@ -20,7 +20,7 @@ const allItems: FooterItem[] = [
     {
         iconName: "frame_person",
         label: "About me",
-        linkToId: "AboutMe"
+        linkToId: "Intro"
     },
     {
         iconName: "filter_alt",
