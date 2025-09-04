@@ -1,4 +1,3 @@
-import AboutMe from './Chapters/AboutMe/AboutMe.tsx';
 import CvOverview from './Chapters/Cv/CvOverview';
 import CvTimeline from './Chapters/Cv/CvTimeline';
 import ContactMe from './Chapters/ContactMe/ContactMe';
@@ -57,7 +56,7 @@ function App() {
   const observerRef = useRef(null);
 
   // Page components configuration
-  const pages = [<Intro />, <AboutMe />, <CvOverview />, <CvTimeline />, <ContactMe />, <Inspiration />];
+  const pages = [<Intro />, <CvOverview />, <CvTimeline />, <ContactMe />, <Inspiration />];
 
   /**
    * Sets the scroll position of a page based on navigation direction
