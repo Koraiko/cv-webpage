@@ -1,161 +1,156 @@
 /* TODO: P100 - move css to public/ or eliminate */
 /* Rotations */
 .rot-22 {
-    display: inline-block;
-    transform: rotate(22deg);
+  display: inline-block;
+  transform: rotate(22deg);
 }
 
 .rot-45 {
-    display: inline-block;
-    transform: rotate(45deg);
+  display: inline-block;
+  transform: rotate(45deg);
 }
 
 .rot-67 {
-    display: inline-block;
-    transform: rotate(67deg);
+  display: inline-block;
+  transform: rotate(67deg);
 }
 
 .rot-90 {
-    display: inline-block;
-    transform: rotate(90deg);
+  display: inline-block;
+  transform: rotate(90deg);
 }
 
 .rot--22 {
-    display: inline-block;
-    transform: rotate(-22deg);
+  display: inline-block;
+  transform: rotate(-22deg);
 }
 
 .rot--45 {
-    display: inline-block;
-    transform: rotate(-45deg);
+  display: inline-block;
+  transform: rotate(-45deg);
 }
 
 .rot--67 {
-    display: inline-block;
-    transform: rotate(-67deg);
+  display: inline-block;
+  transform: rotate(-67deg);
 }
 
 .rot--90 {
-    display: inline-block;
-    transform: rotate(-90deg);
+  display: inline-block;
+  transform: rotate(-90deg);
 }
 
 /* Circles */
 .circle {
-    border-radius: 50% !important;
+  border-radius: 50% !important;
 }
 
 .circle-xs {
-    width: 2rem !important;
-    height: 2rem !important;
+  width: 2rem !important;
+  height: 2rem !important;
 }
 
 .circle-sm {
-    width: 4vw !important;
-    height: 4vw !important;
-    min-width: 4rem !important;
-    min-height: 4rem !important;
+  width: 4vw !important;
+  height: 4vw !important;
+  min-width: 4rem !important;
+  min-height: 4rem !important;
 }
 
 .circle-md {
-    width: 8vw !important;
-    height: 8vw !important;
-    min-width: 8rem !important;
-    min-height: 8rem !important;
+  width: 8vw !important;
+  height: 8vw !important;
+  min-width: 8rem !important;
+  min-height: 8rem !important;
 }
 
 .circle-lg {
-    width: 16vw !important;
-    height: 16vw !important;
-    min-width: 16rem !important;
-    min-height: 16rem !important;
+  width: 16vw !important;
+  height: 16vw !important;
+  min-width: 16rem !important;
+  min-height: 16rem !important;
 }
 
 .circle-xl {
-    width: 32vw !important;
-    height: 32vw !important;
-    min-width: 32rem !important;
-    min-height: 32rem !important;
+  width: 32vw !important;
+  height: 32vw !important;
+  min-width: 32rem !important;
+  min-height: 32rem !important;
 }
 
 .circle-xxl {
-    width: 200vw !important;
-    height: 200vw !important;
-    margin-left: calc(-50vw) !important;
-    margin-right: calc(-50vw) !important;
+  width: 200vw !important;
+  height: 200vw !important;
+  margin-left: calc(-50vw) !important;
+  margin-right: calc(-50vw) !important;
 }
 
 /* Timeline addons */
 @media (min-width: 1170px) {
-
-    /* pc view only */
-    .circle-lg.timeline {
-        transform: translateX(120%) translateY(60%) !important;
-    }
+  /* pc view only */
+  .circle-lg.timeline {
+    transform: translateX(120%) translateY(60%) !important;
+  }
 }
-
 
 /* visibility */
 @media (min-width: 1170px) {
+  /* pc view only */
+  .timeline.d-pc-flex {
+    display: flex !important;
+  }
 
-    /* pc view only */
-    .timeline.d-pc-flex {
-        display: flex !important;
-    }
+  .timeline.d-pc-flex.bottom {
+    transform: translateY(-6rem) !important;
+  }
 
-    .timeline.d-pc-flex.bottom {
-        transform: translateY(-6rem) !important;
-    }
-
-    .timeline.d-mobile-flex {
-        display: none !important;
-    }
+  .timeline.d-mobile-flex {
+    display: none !important;
+  }
 }
 
 @media (max-width: 1167px) {
+  /* pc view only */
+  .timeline.d-pc-flex {
+    display: none !important;
+  }
 
-    /* pc view only */
-    .timeline.d-pc-flex {
-        display: none !important;
-    }
-
-    .timeline.d-mobile-flex {
-        display: flex !important;
-    }
+  .timeline.d-mobile-flex {
+    display: flex !important;
+  }
 }
 
 /* titles */
 h1.timeline {
-    font-weight: 700 !important;
+  font-weight: 700 !important;
 }
 
 h2.timeline {
-    font-weight: 600 !important;
+  font-weight: 600 !important;
 }
 
 @media (max-width: 1169px) {
+  /* mobile view only */
+  h1.timeline {
+    font-size: 4.6rem !important;
+    transform: translateX(40%) translateY(-50%) !important;
+  }
 
-    /* mobile view only */
-    h1.timeline {
-        font-size: 4.6rem !important;
-        transform: translateX(40%) translateY(-50%) !important;
-    }
-
-    h2.timeline {
-        font-size: 2.1rem !important;
-        transform: translateX(65%) translateY(-120%) !important;
-    }
+  h2.timeline {
+    font-size: 2.1rem !important;
+    transform: translateX(65%) translateY(-120%) !important;
+  }
 }
 
 @media (min-width: 1170px) {
-    /* pc view only */
-    h1.timeline {
-        font-size: 5vw !important;
-        transform: translateX(-35%) translateY(10%) rotate(-30deg) !important;
-    }
+  /* pc view only */
+  h1.timeline {
+    font-size: 5vw !important;
+    transform: translateX(-35%) translateY(10%) rotate(-30deg) !important;
+  }
 
-    h2.timeline {
-        font-size: 2.4vw !important;
-        transform: translateX(15%) translateY(-165%) rotate(-30deg) !important;
-    }
+  h2.timeline {
+    font-size: 2.4vw !important;
+    transform: translateX(15%) translateY(-165%) rotate(-30deg) !important;
+  }
 }

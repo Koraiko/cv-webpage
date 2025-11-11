@@ -1,5 +1,5 @@
-import Main from "./Main"
-import { AppProvider } from "./contexts/AppContext"
+import Main from './Main';
+import { AppProvider } from './contexts/AppContext';
 
 function App() {
   return (

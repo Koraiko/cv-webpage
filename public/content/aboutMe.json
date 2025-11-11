@@ -1,95 +1,95 @@
 {
-    "1st row": {
-        "type": "shrink",
-        "size": "100vh / 6",
+  "1st row": {
+    "type": "shrink",
+    "size": "100vh / 6",
+    "content": [
+      {
+        "type": "image",
+        "author": "Photo by Rahul Mishra on Unsplash",
+        "src": "/img/aboutMe/rahul-mishra-unsplash.jpg",
+        "alt": "React code",
+        "objectPosition": "center bottom",
+        "gradientFade": {
+          "direction": "bottom",
+          "fadeOpacity": 0.7,
+          "fadeSize": 40
+        }
+      },
+      {
+        "type": "image",
+        "src": "/img/aboutMe/kanban-selfMade.png",
+        "alt": "Kanban board with cards in different columns",
+        "objectPosition": "center top",
+        "overlayText": "Kanban: Every Issue/Todo gets sub-todos if necessary and is moved from left to right until done."
+      }
+    ]
+  },
+  "2nd row": {
+    "type": "grow",
+    "size": "100vh * 4 / 6",
+    "content": [
+      {
+        "type": "image",
+        "src": "/img/2025_mouth-closed.jpg",
+        "alt": "Professional application photo of Sarah Marek (2025)",
+        "objectPosition": "65% 17%",
+        "bootstrapSizeClass": "col-4",
+        "gradientFade": {
+          "direction": "right",
+          "fadeOpacity": 0.5,
+          "fadeSize": 30
+        }
+      },
+      {
+        "type": "text",
+        "title": "About Me",
         "content": [
-            {
-                "type": "image",
-                "author": "Photo by Rahul Mishra on Unsplash",
-                "src": "/img/aboutMe/rahul-mishra-unsplash.jpg",
-                "alt": "React code",
-                "objectPosition": "center bottom",
-                "gradientFade": {
-                    "direction": "bottom",
-                    "fadeOpacity": 0.7,
-                    "fadeSize": 40
-                }
-            },
-            {
-                "type": "image",
-                "src": "/img/aboutMe/kanban-selfMade.png",
-                "alt": "Kanban board with cards in different columns",
-                "objectPosition": "center top",
-                "overlayText": "Kanban: Every Issue/Todo gets sub-todos if necessary and is moved from left to right until done."
-            }
-        ]
+          "I am a frontend developer who enjoys combining clean, structured code with user-friendly design. My main tools include modern web technologies such as React and TypeScript, but I also enjoy working with processes, data, and communication across teams.",
+          "My path started in high school with small experiments in HTML and CSS and grew through my studies in computer science. Along the way, I worked on projects such as RehaCat+ and my bachelor thesis, where I learned how much I value clarity, teamwork, and sustainable solutions.",
+          "What drives me most are projects where code quality and user experience go hand in hand, and where technology becomes understandable and usable for others."
+        ],
+        "footer": "My very first website from high school never went online, but it sparked the passion that drives me today.",
+        "bootstrapSizeClass": "col"
+      }
+    ]
+  },
+  "3rd row": {
+    "type": "shrink",
+    "size": "2 * 100vh / 6 ",
+    "cutOff": {
+      "left": "t",
+      "right": "b"
     },
-    "2nd row": {
-        "type": "grow",
-        "size": "100vh * 4 / 6",
-        "content": [
-            {
-                "type": "image",
-                "src": "/img/2025_mouth-closed.jpg",
-                "alt": "Professional application photo of Sarah Marek (2025)",
-                "objectPosition": "65% 17%",
-                "bootstrapSizeClass": "col-4",
-                "gradientFade": {
-                    "direction": "right",
-                    "fadeOpacity": 0.5,
-                    "fadeSize": 30
-                }
-            },
-            {
-                "type": "text",
-                "title": "About Me",
-                "content": [
-                    "I am a frontend developer who enjoys combining clean, structured code with user-friendly design. My main tools include modern web technologies such as React and TypeScript, but I also enjoy working with processes, data, and communication across teams.",
-                    "My path started in high school with small experiments in HTML and CSS and grew through my studies in computer science. Along the way, I worked on projects such as RehaCat+ and my bachelor thesis, where I learned how much I value clarity, teamwork, and sustainable solutions.",
-                    "What drives me most are projects where code quality and user experience go hand in hand, and where technology becomes understandable and usable for others."
-                ],
-                "footer": "My very first website from high school never went online, but it sparked the passion that drives me today.",
-                "bootstrapSizeClass": "col"
-            }
-        ]
-    },
-    "3rd row": {
-        "type": "shrink",
-        "size": "2 * 100vh / 6 ",
-        "cutOff":   {
-            "left": "t",
-            "right": "b"
-        },
-        "content": [
-            {
-                "type": "image",
-                "author": "Photo by Sarah Marek",
-                "src": "/img/aboutMe/todo-notes-selfMade.jpg",
-                "alt": "Daily and weekly todo notes on table with black pen",
-                "objectPosition": "center 40%",
-                "bootstrapSizeClass": "col-3"
-            },
-            {
-                "type": "image",
-                "author": "Photo by Mike Kenneally on Unsplash",
-                "src": "/img/aboutMe/mike-kenneally-unsplash.jpg",
-                "alt": "Coffee beans texture background",
-                "objectPosition": "center center",
-                "bootstrapSizeClass": "col-4"
-            },
-            {
-                "type": "image",
-                "author": "Photo by Daniel Leżuch on Unsplash",
-                "src": "/img/aboutMe/daniel-lezuch-unsplash.jpg",
-                "alt": "Laptop keyboard photographed from above",
-                "objectPosition": "center 30%",
-                "bootstrapSizeClass": "col-5",
-                "gradientFade": {
-                    "direction": "top",
-                    "fadeOpacity": 0.6,
-                    "fadeSize": 35
-                }
-            }
-        ]
-    }
+    "content": [
+      {
+        "type": "image",
+        "author": "Photo by Sarah Marek",
+        "src": "/img/aboutMe/todo-notes-selfMade.jpg",
+        "alt": "Daily and weekly todo notes on table with black pen",
+        "objectPosition": "center 40%",
+        "bootstrapSizeClass": "col-3"
+      },
+      {
+        "type": "image",
+        "author": "Photo by Mike Kenneally on Unsplash",
+        "src": "/img/aboutMe/mike-kenneally-unsplash.jpg",
+        "alt": "Coffee beans texture background",
+        "objectPosition": "center center",
+        "bootstrapSizeClass": "col-4"
+      },
+      {
+        "type": "image",
+        "author": "Photo by Daniel Leżuch on Unsplash",
+        "src": "/img/aboutMe/daniel-lezuch-unsplash.jpg",
+        "alt": "Laptop keyboard photographed from above",
+        "objectPosition": "center 30%",
+        "bootstrapSizeClass": "col-5",
+        "gradientFade": {
+          "direction": "top",
+          "fadeOpacity": 0.6,
+          "fadeSize": 35
+        }
+      }
+    ]
+  }
 }

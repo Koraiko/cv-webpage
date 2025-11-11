@@ -3,33 +3,38 @@
 > Please do not use or redistribute the code until a license is added.
 
 # For Recruiters / HR
+
 If you would like to **run this project locally** (a hosted version is planned for the future), please follow these steps:
+
 1. Download the repository
-    - Click the "Code" button (top-left above the file list) and select "Download ZIP".
+   - Click the "Code" button (top-left above the file list) and select "Download ZIP".
 2. Extract the ZIP file
 3. Install Node.js
-    - This project uses npm (Node Package Manager), which comes with Node.js. Installation is required to run the project locally.
+   - This project uses npm (Node Package Manager), which comes with Node.js. Installation is required to run the project locally.
 4. Start the development server
-    - Open a terminal in the project folder and run:
-        - `npm install`: installs all necessary dependencies
-        - `npm start`: starts the project
-    - Your browser should open automatically. If not, visit http://localhost:3000.
+   - Open a terminal in the project folder and run:
+     - `npm install`: installs all necessary dependencies
+     - `npm start`: starts the project
+   - Your browser should open automatically. If not, visit http://localhost:3000.
 
 **For Code Reviewers:**
 You can explore the code directly here on GitHub. The most relevant files are located in:
+
 - src/ – main project source code (WIP)
 - public/ - static assets (e.g. images, css, text)
 
 # TODO (management; not code)
+
 - [ ] Write full README
 - [ ] Add license
 - [ ] remove unneeded npm imports
 
 This repository is part of an ongoing portfolio project I'm building while job searching.
 
-
 ---
+
 automatic created README:
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
