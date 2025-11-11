@@ -1,8 +1,17 @@
 import * as React from 'react';
-import "./Intro.css";
 import { useEffect, useState } from 'react';
+import { JsonReader } from '../shared/JsonReader';
+import { useSettings } from '../contexts/AppContext';
+import { 
+    JsonDataProps, 
+    GridSectionProps, 
+    ImageDataType, 
+    TextDataType, 
+    AboutMeData, 
+    RowSection,
+    StyleConstants 
+} from '../types';
 
-// TODO: Step n - Cleanup code
 /**
  * - [ ] types/ interfaces into types folder
  * - [ ] Structure images in dedicated folder
@@ -10,154 +19,115 @@ import { useEffect, useState } from 'react';
  * - [ ] check uniform definition of variables (A_VARIABLE VS aVariable VS ...) => document this in README!
  * - [ ] check if JavaDoc style comments are used everywhere
  */
-// TODO: Step n-1: limit screen width for very large screens (e.g. 4k) - otherwise layout breaks
-// TODO: Step n-2: mobile view (some elements hide themself under certain width - e.g. footer => check if all mobile layouts are implemented)
-// TODO: Step 1 - Move About me section to here
-// TODO: Step 2 - make name be on application photo
-// TODO: Step 3 - make images parallax on mouse move (optional)
+// TODO: P50 - limit screen width for very large screens (e.g. 4k) - otherwise layout breaks
+// TODO: P50 - mobile view (some elements hide themself under certain width - e.g. footer => check if all mobile layouts are implemented)
+// TODO: P50 - make name be on application photo
 
 // ========================================================================================
-// TYPE DEFINITIONS
+// COMPONENT PROPS
 // ========================================================================================
 
-interface ImageConfig {
-    src: string;
-    alt: string;
-    objectPosition: string;
-    useContain?: boolean;
-}
-
-interface GridSectionProps {
-    children: React.ReactNode;
-    className?: string;
-    flex?: string;
-    borderDirection?: 'top-bottom' | 'left' | 'right' | 'none';
-    style?: React.CSSProperties;
-}
-
-interface AboutMeData {
-    title: string;
-    subTitle: string;
-    content: string[];
-    footer: string;
-    tags?: { icon: string; text: string }[];
-}
+interface IntroProps extends JsonDataProps {}
 
 // ========================================================================================
 // CONSTANTS & CONFIGURATION
 // ========================================================================================
 
-/** CSS class constants for consistent styling */
-const STYLES = {
+/**
+ * CSS class constants for consistent styling across the component
+ */
+const STYLES: StyleConstants = {
     LAYOUT: {
-        FULL_ROW: "m-0 row d-flex justify-content-between w-100 h-100",
-        FULL_COLUMN: "d-flex flex-column h-100",
+        FULL_ROW: "m-0 row d-flex justify-content-between w-100",
         CONTAINER: "p-0 h-100",
     },
     BORDERS: {
         TOP_BOTTOM: "border-top border-bottom border-5 p-0",
         LEFT: "border-start border-5 p-0",
-        RIGHT: "border-end border-5 p-0",
+        RIGHT: "border-end border-5",
     },
     IMAGE: {
         FULL_SIZE: "w-100 h-100",
     }
 } as const;
 
-
-/** Image configuration with semantic naming */
-const IMAGE_CONFIG: Record<string, ImageConfig> = {
-    TOP_LEFT: {
-        // Foto von Christian Wiediger auf Unsplash
-        src: "/img/rahul-mishra-unsplash.jpg",
-        alt: "React code",
-        objectPosition: "center bottom",
-    },
-    TOP_RIGHT: {
-        src: "/img/kanban-selfMade.png",
-        alt: "a Kanban board with issues in different columns",
-        objectPosition: "center top",
-    },
-    CENTER_LEFT: {
-        src: "/img/2024-Application-photoscape.jpg",
-        alt: "Professional application photo of Sarah Marek (2024)",    // TODO: change to new one
-        objectPosition: "72% 23%",
-    },
-    CENTER_RIGHT: {
-        src: "/img/graduationCeremonyInstagram.jpg",
-        alt: "University of Ulm graduation ceremony photo",
-        objectPosition: "45% center",
-    },
-    BOTTOM_LEFT: {
-        src: "/img/todo-notes-selfMade.jpg",
-        alt: "daily and weekly todo notes on table with black pen",
-        objectPosition: "center 40%",
-    },
-    BOTTOM_CENTER: {
-        // Foto von <a href="https://unsplash.com/de/@asthetik?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mike Kenneally</a> auf <a href="https://unsplash.com/de/fotos/kaffeebohnen-lot-TD4DBagg2wE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-        src: "/img/mike-kenneally-unsplash.jpg",
-        alt: "Coffe beans texture",
-        objectPosition: "center center",
-    },
-    BOTTOM_RIGHT: {
-        // Foto von <a href="https://unsplash.com/de/@daniellezuch?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Daniel Leżuch</a> auf <a href="https://unsplash.com/de/fotos/eine-tastatur-mit-einer-maus-iN9grM085Rg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-        src: "/img/daniel-lezuch-unsplash.jpg",
-        alt: "laptop keyboard; cinematic shot from above",
-        objectPosition: "center 30%",
-    },
-} as const;
+/**
+ * Parallax effect configuration
+ * Conservative values to prevent visual artifacts
+ */
+// const PARALLAX_CONFIG = {
+//     ZOOM_AMOUNT: 1.05,              // Fixed zoom to prevent background showing through
+//     MAX_MOVEMENT_PERCENT: 0.8,      // Maximum movement as percentage of screen size
+//     TRANSITION_DURATION: '120s',    // Animation transition duration - smooth but responsive
+//     TRANSITION_DELAY: '800s',         // Animation transition delay - starts 2s after mouse move
+// } as const;
 
 // ========================================================================================
 // UTILITY FUNCTIONS
 // ========================================================================================
 
-/** Get border CSS class based on direction */
-function getBorderClass(direction: GridSectionProps['borderDirection']): string {
-    switch (direction) {
-        case 'top-bottom': return STYLES.BORDERS.TOP_BOTTOM;
-        case 'left': return STYLES.BORDERS.LEFT;
-        case 'right': return STYLES.BORDERS.RIGHT;
-        default: return '';
-    }
-}
+/**
+ * Maps border direction to corresponding CSS class
+ * @param direction - Border direction configuration
+ * @returns Corresponding Bootstrap border class
+ */
+const getBorderClass = (direction: GridSectionProps['borderDirection']): string => {
+    const borderMap = {
+        'top-bottom': STYLES.BORDERS.TOP_BOTTOM,
+        'left': STYLES.BORDERS.LEFT,
+        'right': STYLES.BORDERS.RIGHT,
+        'none': '',
+    } as const;
 
-/** Create common section style with height constraint and overflow handling */
-function createSectionStyle(height: string): React.CSSProperties {
+    return borderMap[direction || 'none'];
+};
+
+/**
+ * Creates consistent section styling with height constraints
+ * @param height - CSS height value
+ * @returns Style object for section container
+ */
+const createSectionStyle = (height: string): React.CSSProperties => {
+    console.debug("height", height);
     return {
-        height,
-        minHeight: 0,
-        overflow: 'hidden',
-    };
-}
+    height,
+    minHeight: 0,
+    overflow: 'hidden',
+}}
+
+// ========================================================================================
+// COMPONENT DEFINITIONS
+// ========================================================================================
 
 /**
  * Introduction page component featuring a responsive image collage layout
  * 
- * Layout structure:
- * - Top row (1/6 vh): Two images showing bottom portions
- * - Main section (4/6 vh): Two images + introduction text  
- * - Bottom row (1/6 vh): Three images showing top portions
+ * This component creates a full-viewport introduction section with:
+ * - 3-row responsive grid (1:4:1 height ratio)
+ * - Subtle mouse-based parallax effects on all images
+ * - Dynamic content loading from external JSON
+ * - Consistent Bootstrap-based styling with custom borders
  * 
- * @returns Responsive introduction section with image collage and text
+ * @returns JSX element containing the complete introduction section
  */
-const Intro: React.FC = () => {
-    const [aboutMe, setAboutMe] = useState<AboutMeData | null>(null);
-    /** Viewport height fractions for consistent layout */
-    const VIEWPORT_HEIGHTS = {
-        TOP_BOTTOM_SECTION: 'calc(100vh / 6)',
-        MAIN_SECTION: 'calc(100vh * 4 / 6)',
-    } as const;
+const Intro: React.FC<IntroProps> = ({ pathToJson }) => {
+    // Global state from context
+    const settings = useSettings();
+    
+    // Local state for component-specific data
+    const [aboutMeData, setAboutMeData] = useState<AboutMeData | null>(null);
 
-
-    /** 
-     * Optimized image component with consistent styling
-     * Uses object-fit: cover by default for full container coverage
+    /**
+     * Optimized image component with parallax effects
      */
     const ImageCollage: React.FC<{
-        config: ImageConfig;
+        config: ImageDataType;
         containerClass?: string;
     }> = ({ config, containerClass = "col" }) => {
         const { src, alt, objectPosition, useContain = false } = config;
+
+        // Calculate parallax transform with safety bounds
+        // const { offsetX, offsetY } = calculateParallaxTransform(mousePosition, screenSize);
 
         const imageStyle: React.CSSProperties = {
             width: '100%',
@@ -167,7 +137,7 @@ const Intro: React.FC = () => {
         };
 
         return (
-            <div className={`${STYLES.LAYOUT.CONTAINER} ${containerClass}`}>
+            <div className={`${STYLES.LAYOUT.CONTAINER} ${containerClass}`} style={{ overflow: 'hidden' }}>
                 <img
                     src={src}
                     alt={alt}
@@ -178,8 +148,14 @@ const Intro: React.FC = () => {
         );
     };
 
-    /** 
-     * Flexible grid section with configurable borders and layout
+    /**
+     * Flexible grid section component with configurable borders
+     * 
+     * @param children - Child components to render
+     * @param className - Additional CSS classes
+     * @param flex - CSS flex value for height distribution
+     * @param borderDirection - Border placement configuration
+     * @param style - Additional inline styles
      */
     const GridSection: React.FC<GridSectionProps> = ({
         children,
@@ -200,92 +176,122 @@ const Intro: React.FC = () => {
         );
     };
 
+    /**
+     * Load content from external JSON file in public folder
+     * Provides separation of content from code for easier maintenance
+     */
     useEffect(() => {
-        const loadAboutMeData = async () => {
-            try {
-                const response = await fetch('/content/aboutMe.json');
-                const data = await response.json();
-                setAboutMe(data);
-            } catch (error) {
-                console.error('Error loading about me data:', error);
-            }
-        };
+        const reader = new JsonReader();
+        reader.readJson(pathToJson).then((data) => {
+            setAboutMeData(data as AboutMeData);
+        });
+    }, [pathToJson]);
 
-        loadAboutMeData();
-    }, []);
+    /**
+     * Renders individual cells (images or text) within a row
+     */
+    const renderCell = (cell: ImageDataType | TextDataType, index: number, cellLength: number): React.ReactNode => {
+        // Add border-right to all elements except the last one in the row
+        const isLastCell = index === cellLength - 1;
+        const borderClass = isLastCell ? "" : STYLES.BORDERS.RIGHT;
+
+        if (cell.type === "image") {
+            const containerClass = `${cell.bootstrapSizeClass || "col"} p-0 ${borderClass}`.trim();
+            return (
+                <ImageCollage
+                    key={index}
+                    config={cell}
+                    containerClass={containerClass}
+                />
+            );
+        } else if (cell.type === "text") {
+            const containerClass = `${cell.bootstrapSizeClass || "col-4"} ${borderClass}`.trim();
+            return (
+                <div key={index} className={`${containerClass} d-flex flex-column justify-content-start align-content-center p-3 h-100`}>
+                    <div className="h-100 overflow-auto">
+                        <h1 className='d-flex align-content-center mt-4 flex-shrink-0'>
+                            <span className="m-s-filled px-2">frame_person</span>
+                            {cell.title}
+                        </h1>
+                        <div
+                            className="mx-2 px-2 pb-3 flex-grow-1"
+                        >
+                            {cell.content.map((paragraph: string, pIndex: number) => (
+                                <p key={pIndex} className={pIndex === 0 ? '' : 'mt-2'}>
+                                    {paragraph}
+                                </p>
+                            ))}
+                            {cell.footer && (
+                                <i className="w-100 align-self-center"
+                                style={{ color: settings["color-styles"]["text-secondary"] }}>
+                                    <strong>{cell.footer}</strong>
+                                </i>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+        return null;
+    };
+
+    /**
+     * Renders a complete row section
+     */
+    const renderRowSection = (row: RowSection, rowIndex: number): React.ReactNode => {
+        const isGrowRow = row.type === "grow";
+        // const flex = isGrowRow ? "4" : "1";
+        const borderDirection = isGrowRow ? "top-bottom" : "none";
+        const height = "calc(" + row.size + ")";
+
+        // TODO: P100 - remove eslint
+        // eslint-disable-next-line
+        function calcCutOff(row: RowSection) {
+            if(!row.cutOff) return null;
+            if(row.cutOff.left === "t" && row.cutOff.right === "b"){}
+            if(row.cutOff.left === "b" && row.cutOff.right === "t"){}
+            return null;
+        }
+
+        return (
+            <GridSection
+                key={rowIndex}
+                borderDirection={borderDirection}
+                style={createSectionStyle(height)}
+            >
+                {row.content.map((cell, cellIndex) => renderCell(cell, cellIndex, row.content.length))}
+            </GridSection>
+        );
+    };
+
+    // ========================================================================================
+    // RENDER
+    // ========================================================================================
 
     return (
         <div
-            className={`w-100 ${STYLES.LAYOUT.FULL_COLUMN}`}
-            style={{ height: '100vh' }}
+            className={`w-100 d-flex flex-column position-relative`}
+            style={{
+                height: "calc(100vh + 100vh / 6)",  // TEMP: works
+                backgroundColor: settings["color-styles"]["background-primary"] || undefined,
+                color: settings["color-styles"]["text-primary"] || undefined
+            }}
             id='AboutMeComponent'
         >
-            {/* Top row - 1/6 of viewport height */}
-            <GridSection
-                flex="1"
-                className="flex-shrink-0"
-                style={createSectionStyle(VIEWPORT_HEIGHTS.TOP_BOTTOM_SECTION)}
-            >
-                <ImageCollage
-                    config={IMAGE_CONFIG.TOP_LEFT}
-                    containerClass={`col-4 ${STYLES.BORDERS.RIGHT}`}
-                />
-                <ImageCollage
-                    config={IMAGE_CONFIG.TOP_RIGHT}
-                    containerClass="col-8"
-                />
-            </GridSection>
-
-            {/* Main content section - 4/6 of viewport height */}
-            <GridSection
-                flex="4"
-                borderDirection="top-bottom"
-                className="flex-shrink-0"
-                style={createSectionStyle(VIEWPORT_HEIGHTS.MAIN_SECTION)}
-            >
-                <ImageCollage
-                    config={IMAGE_CONFIG.CENTER_LEFT}
-                    containerClass={`col-4 ${STYLES.BORDERS.RIGHT} h-100`}
-                />
-
-                {/* Introduction text column */}
-                <div className="col-4 d-flex flex-column justify-content-center p-4">
-                    <h1 className='righteous-regular d-flex align-content-center'><span className="m-s-filled px-2">frame_person</span>{aboutMe?.title}</h1>
-                    <div className="mx-2 px-2 mb-3">
-                    {aboutMe?.content.map((paragraph: string, index: number) => (
-                        <p key={index} className={index === 0 ? '' : 'mt-2'}>
-                            {paragraph}
-                        </p>
-                    ))}
-                    <i className="w-100 fc-teal align-self-center">{aboutMe?.footer}</i>
-                    </div>
-                </div>
-
-                <ImageCollage
-                    config={IMAGE_CONFIG.CENTER_RIGHT}
-                    containerClass={`col-4 ${STYLES.BORDERS.LEFT} h-100`}
-                />
-            </GridSection>
-
-            {/* Bottom row - 1/6 of viewport height */}
-            <GridSection
-                flex="1"
-                className="flex-shrink-0"
-                style={createSectionStyle(VIEWPORT_HEIGHTS.TOP_BOTTOM_SECTION)}
-            >
-                <ImageCollage
-                    config={IMAGE_CONFIG.BOTTOM_LEFT}
-                    containerClass={`col-3 ${STYLES.BORDERS.RIGHT}`}
-                />
-                <ImageCollage
-                    config={IMAGE_CONFIG.BOTTOM_CENTER}
-                    containerClass={`col-4 ${STYLES.BORDERS.RIGHT}`}
-                />
-                <ImageCollage
-                    config={IMAGE_CONFIG.BOTTOM_RIGHT}
-                    containerClass="col-5"
-                />
-            </GridSection>
+            {aboutMeData && Object.entries(aboutMeData).map(([_, rowSection], index) =>
+                renderRowSection(rowSection, index)
+            )}
+            
+            {/* Gradient overlay 
+            <div 
+                className="position-absolute start-0 end-0"
+                style={{
+                    bottom: '0rem',
+                    height: '100px',
+                    background: `linear-gradient(to top, ${settings["color-styles"]["background-primary"]}, ${settings["color-styles"]["background-primary"]}BF, transparent)`,
+                    pointerEvents: 'none'
+                }}
+            />*/}
         </div>
     );
 };
