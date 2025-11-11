@@ -1,0 +1,84 @@
+{
+  "workExperience": [{
+    "name": "Frontend Developer for RehaCat+",
+    "skills": ["JavaScript", "TypeScript", "HTML", "CSS", "Chrome DevTools", "React", "Git", "Kanban", "CI/CD", "Scrum"]
+  }],
+  "uni": [{
+    "name": "Einführung in die Informatik/ Introduction to Computer Science",
+    "skills": ["Java"],
+    "time": {
+      "months": 6
+    }
+  },
+  {
+    "name": "Programmierung von Systemen/ Interactive Systems Programming",
+    "skills": ["Java", "SQL"],
+    "time": {
+      "months": 6
+    }
+  },
+  {
+    "name": "Informationssysteme/ Information Systems",
+    "skills": ["SQL", "XML"],
+    "time": {
+      "months": 6
+    }
+  },
+  {
+    "name": "Softwaregrundprojekt/ Software Project",
+    "skills": ["C++", "Godot", "Git"],
+    "time": {
+      "months": 12
+    }
+  },
+  {
+    "name": "Softwaretechnik I und II/ Software Engineering I and II",
+    "skills": ["Requirements Engineering", "Qualitätssicherung", "Projektmanagement", "Softwarearchitektur"],
+    "time": {
+      "months": 12
+    }
+  },
+  {
+    "name": "Paradigmen der Programmierung/ Programming Paradigms",
+    "skills": ["Haskell", "Prolog"],
+    "time": {
+      "months": 6
+    }
+  },
+  {
+    "name": "Grundlagen der Rechnerarchitektur/ Foundations of Computer Architecture",
+    "skills": ["MIPS"],
+    "time": {
+      "months": 6
+    }
+  },
+  {
+    "name": "Angewandte Numerik I/ Applied Numerics I",
+    "skills": ["MathLab"],
+    "time": {
+      "months": 6
+    }
+  },
+  {
+    "name": "Web Engineering",
+    "skills": ["XML", "Markupsprachen", "JavaScript", "TypeScript", "HTML", "CSS"],
+    "time": {
+      "months": 6
+    }
+  },
+  {
+    "name": "Sicherheit in IT-Systemen/ Security of IT-Systems",
+    "skills": ["Datenschutz und Privatsphäre", "Embedded und Hardware-Security", "Security-Management"],
+    "time": {
+      "months": 6
+    }
+  },
+  {
+    "name": "Bachelor thesis",
+    "skills": ["JavaScript", "TypeScript", "HTML", "CSS", "Node.js", "RehaCat+", "Angular", "Git", "NoSQL"],
+    "time": {
+      "months": 6
+    }
+  }
+  ]
+}
