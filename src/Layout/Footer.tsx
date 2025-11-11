@@ -9,9 +9,11 @@ export interface FooterItem {
     linkToId: string;
 }
 
+// TODO: P50 - fix gsap removal making problems
+
 interface FooterProps {
     onNavigate: (pageIndex: number) => void;
-    pages: React.ReactElement[];
+    pages: JSX.Element[];
     currentPageIndex: number;
 }
 
@@ -44,7 +46,7 @@ const allItems: FooterItem[] = [
     },
 ];
 
-const Footer = ({ onNavigate, pages, currentPageIndex }: FooterProps): React.ReactNode => {
+const Footer = ({ onNavigate, pages, currentPageIndex }: FooterProps) : JSX.Element => {
     const footerHeight = '100px';
     const [items, setItems] = useState<FooterItem[]>([]);
 
@@ -107,15 +109,14 @@ const Footer = ({ onNavigate, pages, currentPageIndex }: FooterProps): React.Rea
     return (
         <>
             {/* PC */}
-            <div className={'position-fixed bottom-0 d-none d-sm-flex m-0'}>
+            <div className={'position-sticky bottom-0 d-none d-sm-flex m-0'}>
                 <footer
                     className={
-                        'position-fixed bottom-0 w-100 ' +
-                        'bg-light ' +
+                        'w-100 ' +
                         'm-0 px-0 ' +
                         'd-flex flex-column'
                     }
-                    style={{ height: footerHeight, zIndex: 1000 }}
+                    style={{ height: footerHeight, zIndex: 1000, backgroundColor: "white" }}
                 >
                     <ProgressBar items={items} currentPageIndex={currentPageIndex} pages={pages} />
                     <div className='w-100 d-flex justify-content-around align-items-center flex-nowrap m-0' style={{ height: footerHeight }}>

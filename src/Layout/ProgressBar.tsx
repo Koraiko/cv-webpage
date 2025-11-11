@@ -3,7 +3,7 @@ import { JSX } from 'react/jsx-runtime';
 import "./Footer.css";
 import { useEffect, useState } from 'react';
 import { FooterItem } from './Footer';
-import ProgressBarBasic from './ProgressBarBasic';
+import ProgressBarBasic from '../Chapters/ProgressBarBasic';
 
 interface ProgressBarProps {
     items: FooterItem[];    // Array of footer navigation items corresponding to page sections
@@ -69,8 +69,8 @@ const ProgressBar = ({ items, currentPageIndex, pages }: ProgressBarProps): JSX.
     return (
         <ProgressBarBasic 
             progress={progress} 
-            classNameBackground='border-ash-gray bg-ash-gray' 
-            classNameProgress='border-rich-black bg-rich-black' 
+            classNameBackground='' 
+            classNameProgress='' 
         />
     );
 };
