@@ -1,7 +1,6 @@
 import React from 'react';
 
-// TODO: work on this
-
+// TODO: P50 -Contact -> not started
 const ContactMe = () => {
 
     return (

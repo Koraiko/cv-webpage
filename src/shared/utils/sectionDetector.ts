@@ -5,7 +5,7 @@ export interface CurrentSection {
     currentSectionIndex: number; // The index of the currently active section
 }
 
-// TODO: refactor this
+// TODO: P50 - refactor this
 
 /**
  * Finds the currently active section based on scroll position
