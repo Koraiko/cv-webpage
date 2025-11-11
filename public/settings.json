@@ -1,9 +1,9 @@
 {
-  "color-styles": {
-    "background-primary": "#FDFDFF",
-    "background-secondary": "#C6C5B9",
-    "text-primary": "#393D3F",
-    "text-secondary": "#546A7B",
-    "highlight": "#62929E"
-  }
+	"color-styles": {
+		"background-primary": "#FDFDFF",
+		"background-secondary": "#C6C5B9",
+		"text-primary": "#393D3F",
+		"text-secondary": "#546A7B",
+		"highlight": "#62929E"
+	}
 }

@@ -1,9 +1,11 @@
 repos:
   # Prettier for code formatting
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.3
+  - repo: local
     hooks:
       - id: prettier
+        name: prettier
+        entry: npx prettier --write
+        language: system
         files: \.(js|jsx|ts|tsx|css|scss|json|md)$
         exclude: |
           (?x)^(
@@ -17,7 +19,7 @@ repos:
 
   # Basic file checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
         exclude: \.(md)$
