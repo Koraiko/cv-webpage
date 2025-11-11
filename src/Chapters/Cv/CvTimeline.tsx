@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
@@ -65,7 +64,7 @@ function getIcon(type: 'Education' | 'Work' | 'Project' | 'Certificate' | 'Volun
     }
 };
 
-const CvTimeline = (): React.ReactNode => {
+const CvTimeline : React.FC = () => {
     const [modalData, setModalData] = useState<BasicModalType>({
         show: false,
         title: '',
@@ -244,12 +243,19 @@ const CvTimeline = (): React.ReactNode => {
     ];
 
     return (
-        <div id="TimelineComponent">
+        <div id="TimelineComponent" className='bg-warning-subtle'>
+            <hr/>
+            - English -<br/>
+            From here on some information and design may be missing or incomplete. Anything particularly rough is marked in light yellow.
+            <br/><br/>
+            - Deutsch -<br/>
+            Ab hier können einige Informationen oder Designelemente fehlen oder unvollständig sein. Besonders unfertige Bereiche sind in hellem Gelb markiert.
+            <hr/>
             <div className='w-100 timeline d-pc-flex justify-content-center align-items-center mt-4'>
-                <span className="badge rounded-pill bg-rich-black fc-white m-0 px-4"><h1>Timeline</h1></span>
+                <span className="badge rounded-pill m-0 px-4"><h1>Timeline</h1></span>
             </div>
             <div className='mb-n1 mt-4 timeline d-mobile-flex' id="TimelineComponent">
-                <span className="badge rounded-pill bg-rich-black fc-white m-0 pe-4 ps-5"
+                <span className="badge rounded-pill m-0 pe-4 ps-5"
                     style={{ transform: 'translateX(-2rem)' }}><h1>Timeline</h1></span>
             </div>
             <VerticalTimeline>
@@ -276,7 +282,7 @@ const CvTimeline = (): React.ReactNode => {
                         <div>{item.content}</div>
                         {item.modal && (
                             <div className='w-100 d-flex justify-content-end align-items-center mt-3'>
-                                <button type="button" className="btn link-secondary me-4 text-decoration-none d-flex align-items-center p-0 border-0 bg-transparent" onClick={(e) => handleOpenModal(e, item.modal)}>
+                                <button type="button" className="btn link-secondary me-4 text-decoration-none d-flex align-items-center p-0 border-0" onClick={(e) => handleOpenModal(e, item.modal)}>
                                     <span className="m-s-filled fs-5 me-1">tab_move</span> <span className="text-decoration-underline">more</span>
                                 </button>
                             </div>
@@ -287,10 +293,10 @@ const CvTimeline = (): React.ReactNode => {
             </VerticalTimeline>
             {/* Interested-Element - PC */}
             <div className='w-100 timeline d-pc-flex bottom justify-content-center align-items-center mt-2 pt-1 pb-4'>
-                <div className="circle circle-xl z-0 bg-cambridge-blue position-relative">
-                    <div className="circle circle-md z-0 bg-teal" />
+                <div className="circle circle-xl z-0 position-relative">
+                    <div className="circle circle-md z-0" />
                     <div
-                        className="circle circle-lg z-1 bg-ash-gray"
+                        className="circle circle-lg z-1"
                         style={{ transform: 'translateX(120%)translateY(60%)' }}
                     />
                     <div className='position-absolute top-50 start-50 translate-middle text-center'>
@@ -314,12 +320,12 @@ const CvTimeline = (): React.ReactNode => {
                 <div className="circle circle-xl position-relative"
                     style={{ transform: 'translateX(-40%)' }} >
                     <div
-                        className="circle circle-lg z-0 bg-ash-gray"
+                        className="circle circle-lg z-0"
                         style={{ transform: 'translateX(160%)translateY(80%)' }}
                     />
-                    <div className="position-absolute w-100 h-100 bg-cambridge-blue z-1" style={{ borderRadius: '50%', overflow: 'hidden', top: 0, left: 0 }} />
+                    <div className="position-absolute w-100 h-100 z-1" style={{ borderRadius: '50%', overflow: 'hidden', top: 0, left: 0 }} />
                     <div
-                        className="position-relative circle circle-md z-3 bg-teal"
+                        className="position-relative circle circle-md z-3"
                         style={{ transform: 'translateX(300%)translateY(-200%)' }}
                     />
 
