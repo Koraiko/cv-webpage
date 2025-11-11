@@ -1,0 +1,40 @@
+repos:
+  # Prettier for code formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.3
+    hooks:
+      - id: prettier
+        files: \.(js|jsx|ts|tsx|css|scss|json|md)$
+        exclude: |
+          (?x)^(
+            node_modules/.*|
+            build/.*|
+            public/.*\.css|
+            public/.*\.js|
+            .*\.min\.(js|css)|
+            package-lock\.json
+          )$
+
+  # Basic file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: \.(md)$
+      - id: end-of-file-fixer
+        exclude: \.(md)$
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-json
+      - id: check-yaml
+
+  # ESLint for JavaScript/TypeScript linting (warnings won't fail the commit)
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint
+        entry: npx eslint --fix --max-warnings 10
+        language: system
+        files: \.(js|jsx|ts|tsx)$
+        exclude: node_modules/
