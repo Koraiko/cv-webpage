@@ -35,10 +35,10 @@ const Main: React.FC = () => {
 
 	// TODO: P50 - remove GSAP here => fix footer navigation not working
 
-	function showAlert(target: HTMLDivElement) {
+	function showAlert() {
 		setMouseInsideWarning(false);
 	}
-	function hideAlert(target: HTMLDivElement) {
+	function hideAlert() {
 		setMouseInsideWarning(true);
 	}
 
@@ -54,8 +54,8 @@ const Main: React.FC = () => {
 			<div
 				className="w-100 position-fixed p-2"
 				id="WIP-alert"
-				onMouseEnter={e => hideAlert(e.currentTarget as HTMLDivElement)}
-				onMouseLeave={e => showAlert(e.currentTarget as HTMLDivElement)}
+				onMouseEnter={e => hideAlert()}
+				onMouseLeave={e => showAlert()}
 				style={{
 					opacity: mouseInsideWarning ? '0%' : '100%',
 					zIndex: 1000,
