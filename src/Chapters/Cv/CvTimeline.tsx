@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
 	VerticalTimeline,
 	VerticalTimelineElement,
 } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import BasicModal, { BasicModalType } from '../../shared/BasicModal';
-import SkillLabel from '../../shared/Labels/SkillLabels';
-import ImageCarousel from '../../shared/ImageCarousel';
+import { JsonReader } from '../../shared/JsonReader';
+import { JsonDataProps } from '../../types';
 import './timeline.css';
 
 // TODO: P50 - Documentation, add Projects (ask if I can use Pictures or recreate my additions), make this filterable, ...
@@ -27,9 +27,170 @@ interface TimelineItemIcon {
 
 interface TimelineItem extends TimelineItemIcon {
 	date: string;
+	sortDate?: string;
+	noTime?: boolean;
 	title: string;
 	content?: React.ReactNode;
 	modal?: BasicModalType;
+}
+
+interface ResumeTimeRange {
+	start?: string;
+	end?: string;
+	months?: number;
+	Reference?: number;
+}
+
+interface ResumeEntry {
+	name: string;
+	company?: string;
+	organisation?: string;
+	skills?: string[];
+	time?: ResumeTimeRange;
+	dateLabel?: string;
+	content?: string;
+}
+
+interface ResumeJson {
+	workExperience?: ResumeEntry[];
+	uni?: ResumeEntry[];
+	volunteerWork?: ResumeEntry[];
+	projects?: ResumeEntry[];
+}
+
+function formatMonthYear(dateValue?: string): string {
+	if (!dateValue) return '';
+
+	const parsedDate = new Date(dateValue);
+	if (Number.isNaN(parsedDate.getTime())) return dateValue;
+
+	const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
+	return `${month}.${parsedDate.getFullYear()}`;
+}
+
+function formatDateRange(start?: string, end?: string): string {
+	if (!start && !end) return '';
+
+	const startLabel = formatMonthYear(start);
+	const endLabel = end ? formatMonthYear(end) : start ? 'now' : '';
+
+	if (!startLabel) return endLabel;
+	if (!endLabel) return startLabel;
+
+	return `${startLabel} -- ${endLabel}`;
+}
+
+function toSortTimestamp(dateValue?: string): number {
+	if (!dateValue) return Number.POSITIVE_INFINITY;
+
+	const parsedDate = new Date(dateValue);
+	if (Number.isNaN(parsedDate.getTime())) return Number.POSITIVE_INFINITY;
+
+	return parsedDate.getTime();
+}
+
+function renderEntryContent(entry: ResumeEntry): React.ReactNode {
+	if (entry.content) {
+		const normalizedContent = entry.content
+			.replace(/^<>\s*/, '')
+			.replace(/\s*<\/>\s*$/, '');
+
+		return <div dangerouslySetInnerHTML={{ __html: normalizedContent }} />;
+	}
+
+	if (entry.skills?.length) {
+		return (
+			<ul className="mb-0">
+				{entry.skills.map((skill, index) => (
+					<li key={`${skill}-${index}`}>{skill}</li>
+				))}
+			</ul>
+		);
+	}
+
+	return null;
+}
+
+function createTimelineItems(
+	entries: ResumeEntry[] | undefined,
+	type: 'Education' | 'Work' | 'Project' | 'Certificate' | 'Volunteer',
+	titleBuilder: (entry: ResumeEntry) => string,
+	dateBuilder: (entry: ResumeEntry) => string
+): TimelineItem[] {
+	return (entries ?? []).map(entry => ({
+		title: titleBuilder(entry),
+		date: dateBuilder(entry),
+		sortDate: entry.time?.end || entry.time?.start,
+		noTime: !entry.time?.start && !entry.time?.end,
+		content: renderEntryContent(entry),
+		...getIcon(type),
+	}));
+}
+
+function createUniversityTimelineItem(entries: ResumeEntry[]): TimelineItem {
+	return {
+		title: 'Universität',
+		date: '10.2018 -- 06.2025',
+		sortDate: '2025-06-30',
+		noTime: false,
+		content: (
+			<ul className="mb-0">
+				{entries.map((entry, index) => (
+					<li key={`${entry.name}-${index}`}>
+						{entry.name}
+						{entry.skills?.length ? ` – ${entry.skills.join(', ')}` : ''}
+					</li>
+				))}
+			</ul>
+		),
+		...getIcon('Education'),
+	};
+}
+
+function createProjectTimelineItems(
+	entries: ResumeEntry[] | undefined
+): TimelineItem[] {
+	return (entries ?? []).map(entry => ({
+		title: `Project: ${entry.name}`,
+		date: entry.dateLabel ?? '',
+		sortDate: entry.time?.end || entry.time?.start,
+		noTime: !entry.time?.start && !entry.time?.end,
+		content: renderEntryContent(entry),
+		...getIcon('Project'),
+	}));
+}
+
+function mapResumeJsonToTimelineItems(data: ResumeJson): TimelineItem[] {
+	return [
+		...createTimelineItems(
+			data.volunteerWork,
+			'Volunteer',
+			entry =>
+				entry.organisation
+					? `${entry.name} at ${entry.organisation}`
+					: entry.name,
+			entry => formatDateRange(entry.time?.start, entry.time?.end)
+		),
+		...(data.uni?.length ? [createUniversityTimelineItem(data.uni)] : []),
+		...createTimelineItems(
+			data.workExperience,
+			'Work',
+			entry =>
+				entry.company ? `${entry.name} at ${entry.company}` : entry.name,
+			entry => formatDateRange(entry.time?.start, entry.time?.end)
+		),
+		...createProjectTimelineItems(data.projects),
+	].sort((left, right) => {
+		if (left.noTime !== right.noTime) {
+			return left.noTime ? -1 : 1;
+		}
+
+		const leftTime = toSortTimestamp(left.sortDate);
+		const rightTime = toSortTimestamp(right.sortDate);
+
+		if (leftTime === rightTime) return 0;
+		return leftTime - rightTime;
+	});
 }
 
 function getIcon(
@@ -69,12 +230,13 @@ function getIcon(
 	}
 }
 
-const CvTimeline: React.FC = () => {
+const CvTimeline: React.FC<JsonDataProps> = ({ pathToJson }) => {
 	const [modalData, setModalData] = useState<BasicModalType>({
 		show: false,
 		title: '',
 		content: null,
 	});
+	const [timelineItems, setTimelineItems] = useState<TimelineItem[]>([]);
 
 	const handleOpenModal = (
 		e: React.MouseEvent,
@@ -97,193 +259,16 @@ const CvTimeline: React.FC = () => {
 		});
 	};
 
-	const timelineItems: TimelineItem[] = [
-		{
-			title: 'Volunteer at school',
-			content: (
-				<>
-					<ul>
-						<li>Supervised weekly "Computer Leisure Time" (2014–2017)</li>
-						<li>Designed yearbooks and one graduation booklet (2017–2018)</li>
-					</ul>
-				</>
-			),
-			date: '2014 -- 2018',
-			...getIcon('Volunteer'),
-		},
-		{
-			title: 'Abitur',
-			content: (
-				<>
-					General university entrance qualification with basic computer science.
-				</>
-			),
-			date: '09.2010 -- 07.2018',
-			...getIcon('Education'),
-		},
-		{
-			title: 'Volunteer at university',
-			content: (
-				<>
-					<ul>
-						<li>Member of the computer science student council</li>
-						<li>Organized and supported university events</li>
-						<li>
-							Held roles such as protocol secretary and office access manager
-						</li>
-					</ul>
-				</>
-			),
-			date: '10.2021 -- 06.2025',
-			...getIcon('Volunteer'),
-		},
-		{
-			title: 'Bachelor of Science in Computer Science',
-			content: (
-				<>
-					<ul>
-						<li>Specialized subjects: Web Engineering and IT-Security</li>
-						<li>
-							Thesis on implementing coordination processes in a web-based,
-							object-centric BPM tool (research project: PHILharmonicFlows)
-						</li>
-					</ul>
-				</>
-			),
-			date: '10.2018 -- 06.2025',
-			...getIcon('Education'),
-		},
-		{
-			title: 'Project: OBS Body-doubling Overlay',
-			content: (
-				<>
-					<ul>
-						<li>
-							Goal: Should dynamically update the overlay based on the user's
-							current learn status.
-						</li>
-						<li>
-							Shows time, current occupation (work/ study/ ...), task-list and
-							current pc-time of user.
-						</li>
-					</ul>
-				</>
-			),
-			date: '???',
-			...getIcon('Project'),
-		},
-		{
-			title: 'Project: Python Client',
-			content: (
-				<>
-					<ul>
-						<li>Small project to understand Python.</li>
-						<li>
-							Goal: Build a client that gets browser information and displays
-							which rooms in the university are free in a specific time.
-						</li>
-						<li>Goal not reached, because student work & thesis began</li>
-					</ul>
-				</>
-			),
-			date: '09.2025',
-			...getIcon('Project'),
-		},
-		{
-			title: 'Frontend Developer at RehaCat+',
-			content: (
-				<>
-					<ul>
-						<li>
-							Refactored frontend, upgraded design system, and introduced
-							TanStack Table
-						</li>
-						<li>Member of an agile interdisciplinary team</li>
-					</ul>
-				</>
-			),
-			date: '10.2024 -- 06.2025',
-			...getIcon('Work'),
-			modal: {
-				title: 'Student Assistant Developer for RehaCat+',
-				size: 'xl',
-				content: (
-					<>
-						<div className="container w-100">
-							<div className="row py-2">
-								{/* left side (img carousel) */}
-								<div className="col-xl-6 d-flex justify-content-center">
-									<ImageCarousel
-										imageArray={[
-											{
-												path: '/img/2025-SSM.jpg',
-												description: 'TODO',
-											},
-										]}
-										roundedImg={true}
-										id="rehaCatCarousel"
-									/>
-								</div>
-								{/* right side (intro text) */}
-								<div className="col-xl-6 p-5">
-									<h5>Overview</h5>
-									<p>
-										Contributed to the medical web app RehaCat+ at Ulm
-										University, used in adaptive diagnostics research. Worked in
-										an agile team with a focus on frontend development and code
-										quality.
-									</p>
-
-									<ul>
-										<li>Built new features using React and TypeScript</li>
-										<li>Refactored cluttered frontend code</li>
-										<li>Modernized UI (migrated custom CSS to Bootstrap 5)</li>
-										<li>Integrated TanStack Table (sorting, filtering)</li>
-										<li>
-											Created and maintained technical documentation (JavaDoc)
-										</li>
-										<li>Reviewed code and provided feedback</li>
-									</ul>
-
-									<h5>Technologies Used</h5>
-									<SkillLabel
-										content={{
-											progLang: ['TypeScript', 'JavaScript', 'HTML', 'CSS'],
-											framework_lib: [
-												'React.js',
-												'Bootstrap',
-												'TanStack Table',
-											],
-											tool_ide: ['VS Code', 'Git'],
-											methodology: ['Scrum', 'Kanban', 'GAMP5'],
-										}}
-										typeLineBreak={true}
-									/>
-
-									<p className="mt-4">
-										Delivered reliable, well-structured code — initiative and
-										quality confirmed in the reference letter.
-									</p>
-								</div>
-							</div>
-						</div>
-					</>
-				),
-			},
-		},
-		{
-			title: 'Project: Portfolio website',
-			content: (
-				<>
-					<ul>
-						<li>Programmed this, when I was bored</li>
-					</ul>
-				</>
-			),
-			date: '07.2025 -- now',
-			...getIcon('Project'),
-		},
-	];
+	/**
+	 * Load content from external JSON file in public folder
+	 * Provides separation of content from code for easier maintenance
+	 */
+	useEffect(() => {
+		const reader = new JsonReader();
+		reader.readJson(pathToJson).then((data: unknown) => {
+			setTimelineItems(mapResumeJsonToTimelineItems(data as ResumeJson));
+		});
+	}, [pathToJson]);
 
 	return (
 		<div id="TimelineComponent" className="bg-warning-subtle">
@@ -315,7 +300,7 @@ const CvTimeline: React.FC = () => {
 				{timelineItems.map((item, index) => (
 					<VerticalTimelineElement
 						key={index}
-						date={item.date}
+						date={item.date || undefined}
 						dateClassName="date"
 						icon={
 							<div className="w-100 h-100 d-flex align-items-center justify-content-center">

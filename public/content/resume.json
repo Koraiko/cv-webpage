@@ -1,52 +1,110 @@
 {
 	"workExperience": [
 		{
-			"name": "Frontend Developer for RehaCat+",
+			"name": "Frontend-Entwicklerin für RehaCat+",
+			"company": "Universität Ulm",
 			"skills": [
 				"JavaScript",
 				"TypeScript",
 				"HTML",
 				"CSS",
-				"Chrome DevTools",
 				"React",
+				"Bootstrap",
+				"TanStack Table",
+				"ESLint",
+				"Prettier",
 				"Git",
-				"Kanban",
+				"npm",
 				"CI/CD",
+				"Manuelle Browser-Tests",
+				"Responsive Design",
+				"Kanban",
 				"Scrum"
-			]
+			],
+			"time": {
+				"start": "2024-10-01",
+				"end": "2025-06-30",
+				"Reference": 1
+			},
+			"content": "<ul><li>Weiterentwicklung und Wartung der webbasierten Anwendung RehaCat+ mit React und TypeScript</li><li>Umsetzung und Refactoring responsiver UI-Komponenten zur Verbesserung von Codequalität und Wartbarkeit</li><li>Einführung von TanStack Table für Sortierung, Filterung und Suche in komplexen Tabellen</li><li>Durchführung manueller Browser-Tests in Chrome und Firefox sowie Behebung von Frontend-Fehlern</li><li>Zusammenarbeit in einem agilen und internationalen Entwicklungsteam auf Deutsch und Englisch</li></ul>"
+		},
+		{
+			"name": "Aushilfe Wareneinräumung",
+			"company": "Müller",
+			"skills": ["Kundenkontakt", "Teamarbeit"],
+			"time": {
+				"start": "2025-09-01",
+				"end": "2026-01-31",
+				"Reference": 1
+			},
+			"content": "<ul><li>Warenverräumung und Regalpflege</li><li>Kundenkontakt im Verkaufsbereich</li></ul>"
+		},
+		{
+			"name": "Associate IT-Auditorin",
+			"company": "SGP Schneider Geiwitz",
+			"skills": [
+				"Caseware IDEA",
+				"Microsoft Visio",
+				"Microsoft Office",
+				"Datenanalyse",
+				"IT-Prüfung",
+				"Mandantenkommunikation"
+			],
+			"time": {
+				"start": "2026-02-01",
+				"end": "",
+				"Reference": 0
+			},
+			"content": "<ul><li>Analyse großer Datenbestände zur Identifikation von Fehlern, Auffälligkeiten und Risiken, unter anderem durch Journal Entry Tests</li><li>Prüfung von Schnittstellen, Datenmigrationen und rechnungslegungsrelevanten IT-Prozessen</li><li>Aufnahme und strukturierte Analyse von IT-Systemen und Prozessabläufen</li><li>Kommunikation mit Mandanten zu technischen und prüfungsbezogenen Fragestellungen</li></ul>"
+		},
+		{
+			"name": "Tutorin für Informatik",
+			"company": "Universität Ulm",
+			"skills": [
+				"Wissensvermittlung",
+				"Präsentation",
+				"Kommunikation",
+				"Erstellung von Lernmaterialien"
+			],
+			"time": {
+				"start": "2020-10-01",
+				"end": "2024-02-29",
+				"Reference": 0
+			},
+			"content": "<ul><li>Leitung von Anfänger- und Fortgeschrittenentutorien</li><li>Korrektur von Klausuren und Übungsblättern</li><li>Erstellung und Aufbereitung von Lernmaterialien wie Übungsblättern, Videos und Zusammenfassungen</li><li>Erstellung und Präsentation von Leistungsberichten</li></ul>"
 		}
 	],
 	"uni": [
 		{
-			"name": "Einführung in die Informatik/ Introduction to Computer Science",
+			"name": "Einführung in die Informatik",
 			"skills": ["Java"],
 			"time": {
 				"months": 6
 			}
 		},
 		{
-			"name": "Programmierung von Systemen/ Interactive Systems Programming",
+			"name": "Programmierung von Systemen",
 			"skills": ["Java", "SQL"],
 			"time": {
 				"months": 6
 			}
 		},
 		{
-			"name": "Informationssysteme/ Information Systems",
+			"name": "Informationssysteme",
 			"skills": ["SQL", "XML"],
 			"time": {
 				"months": 6
 			}
 		},
 		{
-			"name": "Softwaregrundprojekt/ Software Project",
-			"skills": ["C++", "Godot", "Git"],
+			"name": "Softwaregrundprojekt",
+			"skills": ["C++", "Godot", "Git", "Scrum"],
 			"time": {
 				"months": 12
 			}
 		},
 		{
-			"name": "Softwaretechnik I und II/ Software Engineering I and II",
+			"name": "Softwaretechnik I und II",
 			"skills": [
 				"Requirements Engineering",
 				"Qualitätssicherung",
@@ -58,22 +116,22 @@
 			}
 		},
 		{
-			"name": "Paradigmen der Programmierung/ Programming Paradigms",
+			"name": "Paradigmen der Programmierung",
 			"skills": ["Haskell", "Prolog"],
 			"time": {
 				"months": 6
 			}
 		},
 		{
-			"name": "Grundlagen der Rechnerarchitektur/ Foundations of Computer Architecture",
+			"name": "Grundlagen der Rechnerarchitektur",
 			"skills": ["MIPS"],
 			"time": {
 				"months": 6
 			}
 		},
 		{
-			"name": "Angewandte Numerik I/ Applied Numerics I",
-			"skills": ["MathLab"],
+			"name": "Angewandte Numerik I",
+			"skills": ["MATLAB"],
 			"time": {
 				"months": 6
 			}
@@ -93,25 +151,25 @@
 			}
 		},
 		{
-			"name": "Sicherheit in IT-Systemen/ Security of IT-Systems",
+			"name": "Sicherheit in IT-Systemen",
 			"skills": [
 				"Datenschutz und Privatsphäre",
-				"Embedded und Hardware-Security",
-				"Security-Management"
+				"Embedded Security",
+				"Hardware Security",
+				"Security Management"
 			],
 			"time": {
 				"months": 6
 			}
 		},
 		{
-			"name": "Bachelor thesis",
+			"name": "Bachelorarbeit",
 			"skills": [
 				"JavaScript",
 				"TypeScript",
 				"HTML",
 				"CSS",
 				"Node.js",
-				"RehaCat+",
 				"Angular",
 				"Git",
 				"NoSQL"
@@ -119,6 +177,112 @@
 			"time": {
 				"months": 6
 			}
+		}
+	],
+	"volunteerWork": [
+		{
+			"name": "Betreuung der Computerfreizeit",
+			"organisation": "Anna-Essinger-Gymnasium",
+			"time": {
+				"start": "2014-01-01",
+				"end": "2017-12-31"
+			},
+			"skills": ["Verantwortung", "Kinderbetreuung"],
+			"group": "school"
+		},
+		{
+			"name": "Design des Jahrbuchs",
+			"organisation": "Anna-Essinger-Gymnasium",
+			"time": {
+				"start": "2017-01-01",
+				"end": "2018-01-01"
+			},
+			"skills": ["Design", "Layout", "Adobe InDesign"],
+			"group": "school"
+		},
+		{
+			"name": "Leiterin bei den Royal Rangers",
+			"organisation": "Royal Rangers Asch 32",
+			"time": {
+				"start": "",
+				"end": ""
+			},
+			"skills": ["Verantwortung", "Teamleitung", "Kinderbetreuung"]
+		},
+		{
+			"name": "Protokollantin (universitäres Amt)",
+			"organisation": "Universität Ulm",
+			"time": {
+				"start": "",
+				"end": ""
+			},
+			"skills": ["Verantwortung", "Live-Protokollierung", "Übersetzung"]
+		},
+		{
+			"name": "Zugangsbeauftragte (gewähltes fachschaftsübergreifendes Amt)",
+			"organisation": "Universität Ulm",
+			"time": {
+				"start": "",
+				"end": ""
+			},
+			"skills": ["Verantwortung", "Kommunikation", "Erstellung von Richtlinien"]
+		}
+	],
+	"projects": [
+		{
+			"name": "Erstsemester-Einführung Moodle-Kurs",
+			"skills": ["Moodle", "HTML", "CSS"],
+			"time": {
+				"start": "2020-02-01",
+				"end": "2023-10-31"
+			},
+			"content": "<ul><li>Entwicklung einer Cookie-basierten Sprachumschaltung zwischen Deutsch und Englisch</li><li>Eigenverantwortliche Integration und Pflege von diversen Kursinhalten in Zusammenarbeit mit anderen Organisationsteams</li></ul>"
+		},
+		{
+			"name": "No-Time-To-Spy (Uni-Projekt)",
+			"skills": ["Godot", "C++", "Git", "Scrum"],
+			"time": {
+				"start": "2020-04-01",
+				"end": "2020-08-31"
+			},
+			"content": "<ul><li>Entwicklung eines Spiels im Rahmen des universitären Softwaregrundprojekts in einem agilen Scrum-Team</li></ul>"
+		},
+		{
+			"name": "OBS-Body-Doubling-Overlay",
+			"skills": ["JavaScript", "HTML", "CSS", "JSON", "OBS"],
+			"time": {
+				"start": "2024-04-01",
+				"end": "2024-06-30"
+			},
+			"content": "<ul><li>Entwicklung eines dynamischen OBS-Overlays zur Anzeige des aktuellen Lern- und Arbeitsstatus auf Basis einer lokalen JSON-Datei</li><li>Umsetzung von visuellem Feedback zur Unterstützung beim gemeinsamen Online-Arbeiten (Body Doubling)</li></ul>"
+		},
+		{
+			"name": "Portfolio-Webseite",
+			"skills": ["React", "TypeScript", "CSS"],
+			"time": {
+				"start": "2025-07-01",
+				"end": ""
+			},
+			"dateLabel": "07.2025 – heute",
+			"content": "<ul><li>Entwicklung einer persönlichen Portfolio-Webseite mit React und TypeScript</li><li>Erprobung und Umsetzung moderner Frontend-Konzepte, responsiver Gestaltung und scrollbasierter Animationen</li></ul>"
+		},
+		{
+			"name": "Bachelorarbeit - PHILharmonicFlows",
+			"skills": [
+				"JavaScript",
+				"TypeScript",
+				"Angular",
+				"Node.js",
+				"REST API",
+				"CSS",
+				"NoSQL",
+				"Git"
+			],
+			"time": {
+				"start": "2024-10-01",
+				"end": "2025-06-30"
+			},
+			"content": "<ul><li>Implementierung von Koordinationsprozessen in der objektzentrierten BPM-Webanwendung PHILharmonicFlows</li><li>Refactoring und Dokumentation ausgewählter Server- und Client-Komponenten</li></ul>"
 		}
 	]
 }

@@ -28,9 +28,9 @@ const Main: React.FC = () => {
 	const pageComponents: JSX.Element[] = [
 		<Intro pathToJson="/content/aboutMe.json" />,
 		/*<AnimationExamples />,*/ <CvOverview />,
-		<CvTimeline />,
+		<CvTimeline pathToJson="/content/resume.json" />,
 		<ContactMe />,
-		<Inspiration />,
+		// <Inspiration />,
 	];
 
 	// TODO: P50 - remove GSAP here => fix footer navigation not working

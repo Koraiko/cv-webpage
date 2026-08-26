@@ -29,6 +29,10 @@ You can explore the code directly here on GitHub. The most relevant files are lo
 - [ ] Add license
 - [ ] remove unneeded npm imports
 
+# TODO (management; not code)
+
+- [ ] make skill-hash => EN/DE
+
 This repository is part of an ongoing portfolio project I'm building while job searching.
 
 ---
