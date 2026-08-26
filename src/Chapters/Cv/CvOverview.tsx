@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import {
 	ReactOriginal,
 	AngularOriginal,
@@ -20,6 +20,7 @@ import {
 	MatlabOriginal,
 	CplusplusOriginal,
 	HaskellOriginal,
+	GodotOriginal,
 } from 'devicons-react';
 import ScrollInOut from '../../components/ScrollInOut';
 import { useSettings } from '../../contexts/AppContext';
@@ -39,10 +40,11 @@ interface EventToSkillType {
 
 interface SectionInfo {
 	title: string;
-	content: {
-		name: string;
-		icon?: ReactElement<any, any>;
-	}[];
+	content: SkillItem[];
+}
+interface SkillItem {
+	name: string;
+	icon?: ReactElement<any, any>;
 }
 const iconSize = '60';
 const containerSize = parseInt(iconSize) + 40; // Add more padding for card padding
@@ -90,15 +92,34 @@ const skillItems: SectionInfo[] = [
 			},
 			{
 				name: 'SQL',
-				icon: <span className="m-s-filled fs-1">database </span>,
+				icon: (
+					<span className="m-s-filled" style={{ fontSize: iconSize + 'px' }}>
+						database{' '}
+					</span>
+				),
 			},
 			{
 				name: 'NoSQL',
 				icon: (
-					<>
-						<span className="m-s-filled fs-1">database </span>
-						<span className="m-s-filled fs-1">data_object</span>
-					</>
+					<div style={{ position: 'relative', display: 'inline-block' }}>
+						<span className="m-s-filled" style={{ fontSize: iconSize + 'px' }}>
+							database
+						</span>
+						<span
+							className="m-s-filled"
+							style={{
+								fontSize: parseInt(iconSize) * 0.45 + 'px',
+								position: 'absolute',
+								bottom: '0%',
+								right: '0%',
+								transform: 'translate(15%, -5%)',
+								textShadow:
+									'-2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white',
+							}}
+						>
+							data_object
+						</span>
+					</div>
 				),
 			},
 			{
@@ -148,6 +169,10 @@ const skillItems: SectionInfo[] = [
 			{
 				name: 'DaVinci Resolve',
 			},
+			{
+				name: 'Godot',
+				icon: <GodotOriginal size={iconSize} />,
+			},
 		],
 	},
 	{
@@ -158,10 +183,17 @@ const skillItems: SectionInfo[] = [
 			},
 			{
 				name: 'Kanban',
+				icon: (
+					<span className="m-s-filled" style={{ fontSize: iconSize + 'px' }}>
+						view_kanban
+					</span>
+				),
 			},
 		],
 	},
 ];
+
+// TODO: Matlab, Moodle,
 
 const CvOverview: React.FC = () => {
 	const [eventSkills, setEventSkills] = useState<EventToSkillType | null>(null);
@@ -217,11 +249,108 @@ const CvOverview: React.FC = () => {
 			});
 		});
 
+		// Todo: events that are in resume.json but are not inside skillItems should be displayed (-> are currently hidden D: )
 		return foundEvents;
 	};
 
 	const cardDesign =
 		'd-flex justify-content-center align-items-center rounded p-2';
+
+	const FlipCard = ({
+		front,
+		back,
+	}: {
+		front: ReactNode;
+		back?: ReactNode;
+	}) => (
+		<div className="flip-card">
+			<div
+				className={`flip-card-front ${cardDesign} ${!back ? 'fw-bold text-center' : ''}`}
+			>
+				{front}
+			</div>
+			{back && (
+				<div className={`flip-card-back ${cardDesign} fw-bold text-center`}>
+					{back}
+				</div>
+			)}
+		</div>
+	);
+
+	const SkillItems = ({ skill, index }: { skill: SkillItem; index: number }) =>
+		skill.icon ? (
+			<div
+				key={index}
+				className="flip-card-container m-1"
+				style={{
+					width: `${containerSize}px`,
+					height: `${containerSize}px`,
+				}}
+			>
+				<FlipCard
+					front={skill.icon}
+					back={
+						<div title={skillsUsedWhere(skill.name).join(', ')}>
+							{skill.name}
+						</div>
+					}
+				/>
+			</div>
+		) : (
+			<div
+				key={index}
+				className="m-1"
+				style={{
+					width: `${containerSize}px`,
+					height: `${containerSize}px`,
+				}}
+			>
+				<FlipCard
+					front={
+						<div title={skillsUsedWhere(skill.name).join(', ')}>
+							{skill.name}
+						</div>
+					}
+				/>
+			</div>
+		);
+
+	const SkillGroup = React.forwardRef<HTMLDivElement, { item: SectionInfo }>(
+		({ item }, ref) => {
+			console.log(
+				'border color value:',
+				settings['color-styles']['background-primary']
+			);
+			return (
+				<div
+					className="border-0 rounded h-100"
+					style={{
+						backgroundColor: settings['color-styles']['background-primary'],
+					}}
+				>
+					<div
+						ref={ref}
+						className={`d-flex flex-column justify-content-start align-items-center p-4 m-1 border-0 rounded h-100`}
+						style={{
+							backgroundColor: settings['color-styles']['background-secondary'],
+						}}
+					>
+						<h2 className="text-center">{item.title}</h2>
+						<hr className="w-100 border-2 m-0 p-0" />
+						<div
+							className={`d-flex flex-wrap justify-content-center p-4 pt-1 mt-1 w-100`}
+						>
+							{item.content.map((skill, idx) => (
+								<SkillItems key={idx} skill={skill} index={idx} />
+							))}
+						</div>
+					</div>
+				</div>
+			);
+		}
+	);
+	SkillGroup.displayName = 'SkillGroup';
+
 	return (
 		<div id="TechStackComponent" className={`w-100 d-flex my-4 py-4`}>
 			<style>{flipStyles}</style>
@@ -231,73 +360,14 @@ const CvOverview: React.FC = () => {
 				ease="back.out(2)"
 				duration={3}
 				stagger={0.2}
-				className="d-flex flex-row justify-content-around w-100"
+				className="d-flex flex-column flex-lg-row justify-content-between w-100"
+				debugMode={true}
 			>
-				{skillItems.map((item, index) => {
-					return (
-						<div
-							key={index}
-							className={`d-flex flex-column justify-content-start align-items-center p-4 m-1 rounded `}
-							style={{
-								backgroundColor:
-									settings['color-styles']['background-secondary'],
-								width: `calc(100% / ${skillItems.length} - 2rem)`,
-							}}
-						>
-							<h2 className="text-center">{item.title}</h2>
-							<hr className="w-100 border-2 m-0 p-0" />
-							<div
-								className={`d-flex flex-wrap justify-content-center p-4 pt-1 mt-1`}
-							>
-								{item.content.map((skill, index) =>
-									skill.icon ? (
-										<div
-											key={index}
-											className="flip-card-container m-1"
-											style={{
-												width: `${containerSize}px`,
-												height: `${containerSize}px`,
-											}}
-										>
-											<div className="flip-card">
-												{/* Front side - Icon */}
-												<div className={`flip-card-front ${cardDesign}`}>
-													{skill.icon}
-												</div>
-												{/* Back side - Name */}
-												<div
-													className={`flip-card-back ${cardDesign} fw-bold text-center`}
-													title={skillsUsedWhere(skill.name).join(', ')}
-												>
-													{skill.name}
-												</div>
-											</div>
-										</div>
-									) : (
-										<div
-											key={index}
-											className="m-1"
-											style={{
-												width: `${containerSize}px`,
-												height: `${containerSize}px`,
-											}}
-										>
-											<div className="flip-card">
-												{/* Front side - Icon */}
-												<div
-													className={`flip-card-front ${cardDesign} fw-bold text-center`}
-													title={skillsUsedWhere(skill.name).join(', ')}
-												>
-													{skill.name}
-												</div>
-											</div>
-										</div>
-									)
-								)}
-							</div>
-						</div>
-					);
-				})}
+				{skillItems.map((item, index) => (
+					<div key={index}>
+						<SkillGroup item={item} />
+					</div>
+				))}
 			</ScrollInOut>
 		</div>
 	);
