@@ -361,7 +361,7 @@ const CvOverview: React.FC = () => {
 				duration={3}
 				stagger={0.2}
 				className="d-flex flex-column flex-lg-row justify-content-between w-100"
-				debugMode={true}
+				debugMode={false}
 			>
 				{skillItems.map((item, index) => (
 					<div key={index}>
