@@ -18,7 +18,7 @@ const LinkIcon: React.FC<{ link: string; className?: string }> = ({
 	</a>
 );
 const Icon: React.FC<{ name: string }> = ({ name }) => (
-	<span className="material-symbols-outlined">{name}</span>
+	<span className="m-s-filled">{name}</span>
 );
 
 const Inspiration = () => {

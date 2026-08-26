@@ -4,6 +4,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// TODO: trigger for animation not correct
+// - Iphone 11 Pro IOS 14.6
+
 // ========================================================================================
 // SCROLL IN/OUT COMPONENT
 // ========================================================================================
